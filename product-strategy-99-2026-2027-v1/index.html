@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Продуктовая стратегия 99 баллов 2026/27</title>
+  <style>
+    @font-face{font-family:Inter;src:url('assets/fonts/Inter-Regular.woff') format('woff');font-weight:400;font-style:normal;font-display:swap}
+    @font-face{font-family:Inter;src:url('assets/fonts/Inter-Medium.woff') format('woff');font-weight:500;font-style:normal;font-display:swap}
+    @font-face{font-family:Inter;src:url('assets/fonts/Inter-SemiBold.woff') format('woff');font-weight:600;font-style:normal;font-display:swap}
+    @font-face{font-family:Inter;src:url('assets/fonts/Inter-Bold.woff') format('woff');font-weight:700;font-style:normal;font-display:swap}
+    :root{
+      --ink:#1c1c1c;--charcoal:#35383a;--paper:#fff;--surface:#f5f5f5;--body:#555558;--muted:#8e8e93;--line:#d2d2d4;
+      --blue:#007aff;--blue-dark:#0062cc;--pink:#fae6e7;--lemon:#fffbc3;--lilac:#eddcff;--sage:#e8f2d5;--sky:#bddcff;
+      --platform:#c4b8e0;--rose:#f8aab8;--coral:#f16979;--teal:#176b88;--promo-pink:#fb8398;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:#e9e9eb;color:var(--ink);font-family:Inter,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+    body{overflow:hidden}
+    button{font:inherit}
+    .deck{height:100vh;width:100vw;display:block;position:relative;overflow:hidden;background:var(--paper)}
+    .slide{position:absolute;inset:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;overflow:hidden;background:var(--paper);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .18s ease}
+    .slide.active{opacity:1;visibility:visible;pointer-events:auto;z-index:1}
+    .slide-inner{width:1920px;height:1080px;position:relative;padding:48px 96px 96px;overflow:hidden;transform:scale(var(--fit-scale,1));transform-origin:center center}
+    .slide-inner:after{content:"";position:absolute;inset:0;pointer-events:none;border:1px solid rgba(28,28,28,.04)}
+    .white{background:var(--paper)}.surface{background:var(--surface)}.charcoal{background:var(--charcoal);color:white}.lilac{background:var(--lilac)}.pink{background:var(--pink)}.lemon{background:var(--lemon)}.sage{background:var(--sage)}.sky{background:var(--sky)}
+    .eyebrow{font-size:clamp(12px,1.1vw,22px);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+    .kicker{font-size:clamp(14px,1.15vw,23px);letter-spacing:.09em;text-transform:uppercase;color:var(--blue-dark);font-weight:600;margin-bottom:1.2rem}
+    h1,h2,h3,p{margin:0}h1{font-size:clamp(42px,6vw,116px);line-height:.97;letter-spacing:-.055em;font-weight:500}h2{font-size:clamp(32px,4vw,76px);line-height:1.02;letter-spacing:-.045em;font-weight:500}h3{font-size:clamp(20px,2.2vw,42px);line-height:1.05;font-weight:600;letter-spacing:-.025em}.lead{font-size:clamp(20px,2vw,39px);line-height:1.2;letter-spacing:-.025em}.body{font-size:clamp(15px,1.36vw,27px);line-height:1.37}.small{font-size:clamp(12px,1.06vw,21px);line-height:1.3;color:var(--body)}
+    .muted{color:var(--body)}.blue{color:var(--blue-dark)}.white-text{color:#fff}.strong{font-weight:600}.under{position:absolute;bottom:106px;left:clamp(34px,5vw,96px);right:clamp(34px,5vw,96px);display:flex;justify-content:space-between;align-items:flex-end;z-index:2}.under .source{font-size:clamp(11px,.8vw,16px);color:var(--muted);max-width:75%}
+    .accent-rule{width:clamp(72px,6vw,120px);height:7px;border-radius:999px;background:var(--blue);margin:26px 0}.accent-rule.warm{background:var(--coral)}.accent-rule.dark{background:var(--ink)}
+    .cover{background:linear-gradient(123deg,#fff 0%,#fff 53%,#e6f1ff 100%)}
+    .cover .side-block{position:absolute;right:0;top:0;bottom:0;width:17%;background:var(--blue);opacity:.92}.cover .cover-copy{position:absolute;left:10%;top:18%;max-width:64%;z-index:1}.cover .cover-mark{font-size:clamp(18px,1.5vw,30px);color:var(--body);letter-spacing:.04em;margin-top:26px}.cover .cover-note{margin-top:36px;color:var(--body);font-size:clamp(16px,1.45vw,28px);max-width:690px;line-height:1.35}.cover .mascot{position:absolute;right:11%;bottom:9%;width:25%;max-width:490px;z-index:1;filter:drop-shadow(0 22px 30px rgba(0,0,0,.10))}.cover .year{position:absolute;right:3.3%;bottom:11%;color:white;font-weight:600;writing-mode:vertical-rl;transform:rotate(180deg);letter-spacing:.08em;font-size:clamp(15px,1.2vw,24px)}
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:clamp(22px,3vw,64px);height:100%;align-items:center}.three-col{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.2vw,42px)}
+    .split-title{max-width:800px;margin-top:4vh}.split-title p{max-width:720px;margin-top:24px}.numbered{font-size:clamp(15px,1.2vw,23px);color:var(--blue-dark);font-weight:600;letter-spacing:.08em;margin-bottom:18px}
+    .soft-card{border-radius:clamp(18px,2.2vw,42px);padding:clamp(24px,3vw,58px);position:relative;overflow:hidden;min-height:260px}.soft-card:after{content:"";position:absolute;width:38%;aspect-ratio:1;border-radius:50%;right:-12%;bottom:-36%;background:rgba(255,255,255,.5)}
+    .soft-card .tag{display:inline-flex;border-radius:999px;background:rgba(255,255,255,.7);padding:10px 18px;font-size:clamp(12px,1vw,19px);font-weight:600;color:var(--body);margin-bottom:28px}.soft-card .label{font-size:clamp(13px,1.12vw,22px);color:var(--body);margin-top:20px;max-width:480px}.soft-card ul{padding:0;margin:26px 0 0;list-style:none;display:grid;gap:10px;position:relative;z-index:1}.soft-card li{font-size:clamp(14px,1.22vw,24px);line-height:1.28;max-width:630px}.soft-card li:before{content:"";display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--blue);margin-right:12px;vertical-align:middle}.soft-card.right li:before{background:var(--coral)}
+    .tariffs{display:flex;gap:12px;margin-top:30px;flex-wrap:wrap}.pill{padding:12px 18px;border-radius:999px;background:rgba(255,255,255,.75);font-size:clamp(12px,1vw,18px);font-weight:600}.pill.blue-pill{background:var(--blue);color:white}.pill.dark-pill{background:var(--ink);color:white}
+    .lane-wrap{margin-top:clamp(34px,4vw,76px);display:grid;gap:18px}.lane{display:grid;grid-template-columns:26% 1fr;align-items:stretch;min-height:180px;border-radius:28px;overflow:hidden}.lane .lane-title{padding:clamp(22px,2.2vw,42px);display:flex;flex-direction:column;justify-content:center}.lane .lane-title h3{margin-bottom:18px}.lane .driver-heading{font-size:clamp(14px,1.1vw,22px);font-weight:600;color:var(--body);line-height:1.3}.lane .driver-list{list-style:none;padding:0;margin:10px 0 0;display:grid;gap:7px}.lane .driver-list li{font-size:clamp(14px,1.1vw,22px);color:var(--body);line-height:1.3}.lane .driver-list li:before{content:"•";display:inline-block;margin-right:9px;color:var(--blue);font-weight:700}.lane:nth-child(2) .driver-list li:before{color:#d59d00}.lane .lane-body{background:white;padding:clamp(22px,2.2vw,42px);display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-content:center}.lane .item{border-left:4px solid var(--blue);padding-left:18px}.lane .item:nth-child(2){border-color:var(--coral)}.lane .item:nth-child(3){border-color:#6c4dcc}.lane .item strong{display:block;font-size:clamp(17px,1.45vw,29px);margin-bottom:6px;font-weight:600}.lane .item p{font-size:clamp(13px,1.08vw,21px);line-height:1.28;color:var(--body)}.lane .item-driver{margin-top:14px;font-size:clamp(12px,.95vw,18px);line-height:1.25;font-weight:600;color:var(--blue-dark)}.lane .item:nth-child(2) .item-driver{color:var(--coral)}.lane .item:nth-child(3) .item-driver{color:#6c4dcc}.lane .lane-body.numbered-body{grid-template-columns:repeat(2,1fr);gap:20px}.lane .numbered-body .item{border:0;border-radius:22px;padding:clamp(22px,2vw,38px);min-height:180px}.lane .numbered-body .item:nth-child(1){background:var(--lilac)}.lane .numbered-body .item:nth-child(2){background:var(--lemon)}.lane .numbered-body .item-no{font-size:clamp(20px,1.8vw,35px);font-weight:600;color:var(--blue-dark);line-height:1;margin-bottom:22px}.lane .numbered-body .item strong{font-size:clamp(17px,1.45vw,29px);margin-bottom:10px}.lane .numbered-body .item p{font-size:clamp(13px,1.08vw,21px);line-height:1.28;color:var(--body)}.lane .lane-body.marketing-numbered-body{grid-template-columns:repeat(3,1fr)}.lane .marketing-numbered-body .item{min-height:240px}.lane .marketing-numbered-body .item:nth-child(1){background:var(--lilac)}.lane .marketing-numbered-body .item:nth-child(2){background:var(--pink)}.lane .marketing-numbered-body .item:nth-child(3){background:var(--sky)}
+    .slide[data-title="Два контура"] .lane-wrap{margin-top:-18px;gap:12px}
+    .slide[data-title="Два контура"] .split-title{max-width:none}
+    .slide[data-title="Два контура"] .split-title h2{white-space:nowrap;font-size:clamp(28px,3.6vw,68px)}
+    .slide[data-title="Бэклог задач преподавателей"] .split-title{max-width:none}
+    .slide[data-title="Бэклог задач преподавателей"] .split-title h2{white-space:nowrap}
+    .slide[data-title="Два контура"] .lane{align-items:start}
+    .slide[data-title="Два контура"] .lane .lane-body{align-content:start}
+    .slide[data-title="Два контура"] .lane .marketing-numbered-body{align-items:start}
+    .slide[data-title="Два контура"] .lane .marketing-numbered-body .item{min-height:0}
+    .slide[data-title="Два контура"] .lane-wrap{margin-top:18px}
+    .slide[data-title="Два контура"] .lane .marketing-numbered-body{padding-bottom:24px}
+    .slide[data-title="Два контура"] .lane{align-items:stretch}
+    .timeline .months,.timeline .t-grid{background:none}
+    .timeline .t-grid:before,.timeline .t-grid:after{display:none!important}
+    .timeline{margin-top:clamp(26px,3vw,54px);position:relative}.months{display:grid;grid-template-columns:repeat(9,1fr);gap:7px;margin-left:16%;margin-bottom:14px;background:repeating-linear-gradient(to right,transparent 0,transparent calc(11.111% - 1px),rgba(142,142,147,.24) calc(11.111% - 1px),rgba(142,142,147,.24) 11.111%)}.month{font-size:clamp(10px,.8vw,16px);text-align:center;color:var(--muted);font-weight:600;text-transform:uppercase}.t-row{display:grid;grid-template-columns:16% 1fr;min-height:68px;margin-bottom:10px}.t-label{font-size:clamp(14px,1.1vw,22px);font-weight:600;display:flex;align-items:center;padding-right:18px}.t-grid{display:grid;grid-template-columns:repeat(9,1fr);gap:7px;align-items:center;position:relative;background:repeating-linear-gradient(to right,transparent 0,transparent calc(11.111% - 1px),rgba(142,142,147,.24) calc(11.111% - 1px),rgba(142,142,147,.24) 11.111%)}.t-grid:before{content:"";position:absolute;left:0;right:0;top:50%;height:2px;background:var(--line);z-index:0}.t-grid:after{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(to right,transparent 0,transparent calc(11.111% - 1px),rgba(142,142,147,.28) calc(11.111% - 1px),rgba(142,142,147,.28) 11.111%);z-index:2}.t-row.additional-products .t-grid{background:none}.t-row.additional-products .t-grid:before,.t-row.additional-products .t-grid:after{display:none}.t-block{height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;padding:0 9px;position:relative;z-index:1;font-size:clamp(11px,.9vw,17px);font-weight:600;text-align:center;line-height:1.1}.t-block.blue-bg{background:var(--blue);color:#fff}.t-block.lilac-bg{background:var(--lilac)}.t-block.pink-bg{background:var(--pink)}.t-block.lemon-bg{background:var(--lemon)}.t-block.sage-bg{background:var(--sage)}.t-block.coral-bg{background:#ffd2d8}.t-block.dark-bg{background:var(--charcoal);color:#fff}.callout{margin-top:28px;display:flex;gap:16px;align-items:center;border-radius:18px;background:var(--lemon);padding:18px 22px;max-width:820px;font-size:clamp(13px,1.08vw,21px);line-height:1.25}.callout b{font-weight:600}
+    .process{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:clamp(40px,5vw,96px)}.process-step{min-height:285px;border-radius:28px;padding:clamp(22px,2.2vw,42px);position:relative;background:white}.process-step .step-no{font-size:clamp(12px,.95vw,18px);font-weight:700;letter-spacing:.08em;color:var(--blue-dark)}.process-step h3{margin-top:30px;font-size:clamp(19px,1.85vw,36px)}.process-step p{margin-top:18px;font-size:clamp(13px,1.07vw,21px);line-height:1.3;color:var(--body)}.process-step:nth-child(2){background:var(--lilac)}.process-step:nth-child(3){background:var(--lemon)}.process-step:nth-child(4){background:var(--sage)}.process-foot{margin-top:30px;color:var(--body);font-size:clamp(13px,1.1vw,22px);max-width:860px}
+    .board{display:grid;grid-template-columns:1.15fr 1fr 1fr 1fr;gap:14px;margin-top:clamp(30px,4vw,72px)}.board-col{min-height:420px;border-radius:26px;padding:26px 24px;background:var(--surface);border-top:8px solid var(--blue)}.board-col:nth-child(2){border-color:var(--coral);background:var(--pink)}.board-col:nth-child(3){border-color:#6c4dcc;background:var(--lilac)}.board-col:nth-child(4){border-color:#e3b000;background:var(--lemon)}.board-col h3{font-size:clamp(19px,1.55vw,30px);margin-bottom:18px}.board-col p{font-size:clamp(13px,1.06vw,20px);line-height:1.34;color:var(--body)}.board-col ul{list-style:none;padding:0;margin:22px 0 0;display:grid;gap:14px}.board-col li{font-size:clamp(13px,1.06vw,20px);line-height:1.27}.board-col li:before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--blue);margin-right:9px;vertical-align:middle}.board-col:nth-child(2) li:before{background:var(--coral)}.board-col:nth-child(3) li:before{background:#6c4dcc}.board-col:nth-child(4) li:before{background:#d59d00}
+    .teacher-common{margin-top:clamp(18px,2vw,34px);padding:14px 18px;border-radius:16px;background:var(--surface);color:var(--body);font-size:clamp(13px,1vw,19px);line-height:1.25}.teacher-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:clamp(20px,2.5vw,42px);align-items:stretch}.teacher-card{border-radius:20px;padding:18px 20px;min-height:190px;overflow:hidden}.teacher-card:nth-child(4n+1){background:var(--lilac)}.teacher-card:nth-child(4n+2){background:var(--pink)}.teacher-card:nth-child(4n+3){background:var(--lemon)}.teacher-card:nth-child(4n){background:var(--sage)}.teacher-card h3{font-size:clamp(15px,1.12vw,22px);line-height:1.08;margin-bottom:5px}.teacher-subject{font-size:clamp(11px,.85vw,16px);line-height:1.2;font-weight:600;color:var(--blue-dark);margin-bottom:11px}.teacher-base{font-size:clamp(11px,.78vw,15px);line-height:1.18;color:var(--body);margin-bottom:9px}.teacher-card ul{list-style:none;padding:0;margin:0;display:grid;gap:5px}.teacher-card li{font-size:clamp(11px,.78vw,15px);line-height:1.16;padding-left:13px;position:relative}.teacher-card li:before{content:"•";position:absolute;left:0;color:var(--blue-dark);font-weight:700}.teacher-card:nth-child(4n+2) li:before{color:var(--coral)}.teacher-card:nth-child(4n+3) li:before{color:#d59d00}.teacher-card:nth-child(4n) li:before{color:#5e9a35}.teacher-card .no-extra{font-size:clamp(11px,.78vw,15px);line-height:1.16;color:var(--body)}
+    .backlog-embed{position:absolute;left:96px;right:96px;top:190px;bottom:48px;overflow:hidden;border-radius:20px;background:#fff}.backlog-embed iframe{display:block;width:100%;height:100%;border:0;overflow:auto}
+    .matrix{margin-top:clamp(28px,3.5vw,64px);border-collapse:separate;border-spacing:0;width:100%;font-size:clamp(13px,1.08vw,21px);overflow:hidden;border-radius:24px}.matrix th{background:var(--charcoal);color:#fff;text-align:left;padding:18px 20px;font-weight:500}.matrix td{padding:18px 20px;border-bottom:1px solid var(--line);background:#fff;vertical-align:top;line-height:1.25}.matrix tr:last-child td{border-bottom:0}.matrix tr:nth-child(even) td{background:#fafafa}.effect{display:inline-flex;padding:7px 12px;border-radius:999px;font-size:clamp(11px,.85vw,16px);font-weight:600;background:var(--lilac);margin-right:4px;margin-bottom:4px}.effect.rev{background:var(--lemon)}.effect.conv{background:var(--pink)}.effect.future{background:var(--sage)}
+    .revenue-formula{margin-top:clamp(36px,4vw,76px);padding:clamp(26px,2.3vw,44px) clamp(30px,3vw,60px);border-radius:28px;background:var(--lilac);font-size:clamp(18px,1.55vw,31px);line-height:1.15;letter-spacing:-.035em;font-weight:500;white-space:nowrap}.revenue-formula sup{font-size:.58em;line-height:0;vertical-align:super}.revenue-table{margin-top:clamp(26px,3vw,54px);table-layout:fixed;font-size:clamp(14px,1.12vw,22px)}.revenue-table th:nth-child(1){width:30%}.revenue-table th:nth-child(2){width:70%}.revenue-table td:first-child{font-weight:600}
+    .detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:clamp(28px,3.5vw,64px);align-items:stretch}.detail-card{border-radius:28px;padding:clamp(24px,2.5vw,46px);min-height:620px;position:relative;overflow:hidden}.detail-card.lilac{background:var(--lilac)}.detail-card.pink{background:var(--pink)}.detail-card.lemon{background:var(--lemon)}.detail-card.sky{background:var(--sky)}.detail-card .detail-no{font-size:clamp(26px,2.2vw,42px);font-weight:600;line-height:1;color:var(--blue-dark);margin-bottom:22px}.detail-card h3{font-size:clamp(24px,2.1vw,40px);line-height:1.05;margin-bottom:22px}.detail-card .meta{font-size:clamp(14px,1.1vw,22px);line-height:1.32;margin-top:10px;color:var(--body)}.detail-card .meta b{font-weight:600;color:var(--ink)}.detail-card ul{list-style:none;padding:0;margin:26px 0 0;display:grid;gap:12px}.detail-card li{font-size:clamp(14px,1.1vw,22px);line-height:1.28;padding-left:20px;position:relative}.detail-card li:before{content:"•";position:absolute;left:0;color:var(--blue-dark);font-weight:700}.detail-card .role{margin-top:28px;padding-top:18px;border-top:1px solid rgba(28,28,28,.18);font-size:clamp(14px,1.08vw,21px);line-height:1.28;font-weight:600;color:var(--body)}
+    .tutor-calendar{margin-top:clamp(24px,3vw,52px)}.tutor-months{display:grid;grid-template-columns:repeat(9,1fr);gap:10px;margin-left:16%;margin-bottom:24px}.tutor-month{padding:10px 8px;border:1px solid var(--charcoal);border-radius:11px;background:#d9f0f8;text-align:center;font-size:clamp(11px,.86vw,17px);font-weight:500;text-transform:uppercase}.tutor-row{display:grid;grid-template-columns:16% 1fr;min-height:48px;margin-bottom:10px}.tutor-label{font-size:clamp(14px,1.12vw,22px);font-weight:600;color:var(--body);display:flex;align-items:center;padding-right:14px}.tutor-track{display:grid;grid-template-columns:repeat(9,1fr);gap:8px;align-items:center}.tutor-bar{height:42px;border:1px solid var(--charcoal);border-radius:7px;display:flex;align-items:center;justify-content:center;padding:0 10px;font-size:clamp(12px,.95vw,18px);font-weight:600;text-align:center;line-height:1.1}.tutor-bar.lilac-bar{background:#e4c9f0}.tutor-bar.lemon-bar{background:#ffeca4}.tutor-bar.sprint-bar{background:#f6c66e}.sprint-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:clamp(26px,3vw,52px)}.sprint-card{border:1px solid rgba(28,28,28,.2);border-radius:24px;padding:clamp(22px,2.2vw,40px);min-height:300px}.sprint-card.small-sprint{background:#f3f5f7}.sprint-card.big-sprint{background:#e4c9f0}.sprint-card h3{font-size:clamp(22px,1.9vw,36px);line-height:1.05;margin-bottom:18px;text-align:center}.sprint-card .sprint-meta{font-size:clamp(13px,1.05vw,20px);line-height:1.3;margin-top:7px;color:var(--body)}.sprint-card .sprint-meta b{color:var(--ink)}.sprint-card ul{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:8px}.sprint-card li{font-size:clamp(13px,1.02vw,20px);line-height:1.2;padding-left:16px;position:relative}.sprint-card li:before{content:"•";position:absolute;left:0;color:var(--blue-dark);font-weight:700}
+    .levels{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:clamp(30px,3.2vw,62px)}.level{padding:clamp(24px,2.5vw,48px);padding-bottom:clamp(28px,3vw,58px);border-radius:28px;min-height:360px;position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:flex-start}.level .level-no{font-size:clamp(42px,5vw,92px);line-height:1;font-weight:500;color:rgba(28,28,28,.16)}.level h3{margin-top:18px}.level p{margin-top:22px;font-size:clamp(14px,1.15vw,23px);line-height:1.35;color:var(--body)}.level .micro{margin-top:auto;padding-top:24px;font-size:clamp(12px,.98vw,19px);font-weight:600;color:var(--blue-dark)}.level.one{background:var(--pink)}.level.two{background:var(--lilac)}.level.three{background:var(--lemon)}
+    .ai-layout{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;height:100%;align-items:center}.ai-list{display:grid;gap:18px;margin-top:32px}.ai-item{display:grid;grid-template-columns:38px 1fr;gap:15px;align-items:start}.ai-item .ai-dot{width:34px;height:34px;border-radius:50%;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:600}.ai-item h3{font-size:clamp(18px,1.65vw,32px)}.ai-item p{margin-top:7px;font-size:clamp(13px,1.08vw,21px);line-height:1.3;color:var(--body)}.ai-art{height:70%;border-radius:42px;background:linear-gradient(135deg,#f7f1ff 0%,#cadbff 60%,#fff 100%);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}.ai-art:before{content:"";position:absolute;width:78%;height:66%;border-radius:50%;background:#fff;transform:rotate(-14deg);opacity:.64}.ai-art img{width:62%;max-width:480px;position:relative;z-index:1;filter:drop-shadow(0 25px 25px rgba(48,48,90,.18))}
+    .kotokod{display:grid;grid-template-columns:1fr;gap:42px;align-items:center;height:100%}.course-cloud{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px;max-width:760px}.course-tag{padding:17px 23px;border-radius:999px;background:var(--surface);font-size:clamp(15px,1.35vw,27px);font-weight:600}.course-tag:nth-child(1){background:var(--pink)}.course-tag:nth-child(2){background:var(--lilac)}.course-tag:nth-child(3){background:var(--sky)}.course-tag:nth-child(4){background:var(--sage)}.course-tag:nth-child(5){background:#ead4c2}.course-tag:nth-child(6){background:#d6e9ff}.course-tag.vibe{background:var(--lemon);border:2px solid #e3b000}.kotokod-note{margin-top:30px;font-size:clamp(14px,1.15vw,23px);line-height:1.35;color:var(--body);max-width:760px}.kotokod-art{height:65%;border-radius:42px;background:var(--surface);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}.kotokod-art:after{content:"KOTOKOD";position:absolute;right:-6%;bottom:8%;font-size:clamp(50px,8vw,150px);font-weight:700;color:rgba(0,122,255,.09);letter-spacing:-.08em}.kotokod-art img{width:56%;position:relative;z-index:1;filter:drop-shadow(0 24px 24px rgba(0,0,0,.13))}
+    .platform{display:grid;grid-template-columns:.8fr 1.2fr;gap:42px;align-items:center;height:100%}.platform-copy{max-width:600px}.platform-copy h2{max-width:560px}.platform-list{list-style:none;padding:0;margin:30px 0 0;display:grid;gap:15px}.platform-list li{font-size:clamp(14px,1.2vw,24px);line-height:1.28}.platform-list li:before{content:"";display:inline-block;width:12px;height:12px;border-radius:50%;background:var(--blue);margin-right:13px;vertical-align:middle}.shot-wrap{padding:24px;border-radius:40px;background:linear-gradient(135deg,#eee7ff,#c4b8e0 50%,#d8e9ff);box-shadow:0 24px 55px rgba(54,45,100,.18);transform:rotate(1.4deg)}.shot-wrap img{display:block;width:100%;border-radius:22px;box-shadow:0 8px 20px rgba(0,0,0,.12)}.platform-meta{margin-top:24px;display:flex;gap:10px;flex-wrap:wrap}.platform-meta span{font-size:clamp(12px,.95vw,18px);padding:10px 14px;border-radius:999px;background:rgba(255,255,255,.72);font-weight:600}
+    .invest{display:grid;grid-template-columns:1.05fr .95fr;gap:50px;height:100%;align-items:center}.invest-cards{display:grid;gap:18px;margin-top:32px}.invest-card{display:grid;grid-template-columns:170px 1fr;gap:22px;align-items:center;border-radius:24px;padding:20px 24px;background:white}.invest-card .type{font-weight:600;font-size:clamp(16px,1.35vw,27px)}.invest-card p{font-size:clamp(13px,1.06vw,21px);color:var(--body);line-height:1.28}.invest-card.vpr{background:var(--lemon)}.invest-card.camp{background:var(--pink)}.invest-art{height:70%;display:flex;align-items:center;justify-content:center;position:relative}.invest-art:before{content:"";position:absolute;inset:10% 6% 8%;background:var(--charcoal);border-radius:45% 55% 44% 56% / 54% 42% 58% 46%;transform:rotate(-7deg)}.invest-art img{width:65%;position:relative;z-index:1;filter:drop-shadow(0 25px 25px rgba(0,0,0,.18))}
+    .finish{background:linear-gradient(130deg,#fff 0%,#fff 45%,#dfeaff 100%)}.finish-grid{display:grid;grid-template-columns:1fr 1fr;gap:46px;align-items:center;height:100%}.finish-list{display:grid;gap:14px;margin-top:30px}.finish-item{display:grid;grid-template-columns:45px 1fr;gap:15px;align-items:start}.finish-item span{width:40px;height:40px;border-radius:50%;background:var(--blue);color:white;display:flex;align-items:center;justify-content:center;font-weight:600}.finish-item p{font-size:clamp(15px,1.25vw,24px);line-height:1.3}.finish-art{height:70%;position:relative;display:flex;align-items:center;justify-content:center}.finish-art img{width:74%;max-width:610px;filter:drop-shadow(0 28px 34px rgba(0,0,0,.14))}.end-note{margin-top:34px;font-size:clamp(13px,1.05vw,20px);color:var(--body);max-width:640px}
+    .nav{position:fixed;right:24px;bottom:18px;display:flex;align-items:center;gap:8px;z-index:20;background:rgba(255,255,255,.88);backdrop-filter:blur(16px);padding:8px 10px;border-radius:999px;box-shadow:0 8px 25px rgba(0,0,0,.11)}.nav button{border:0;background:transparent;color:var(--ink);width:34px;height:34px;border-radius:50%;cursor:pointer;font-size:25px;line-height:1}.nav button:hover{background:var(--surface)}.dots{display:flex;gap:5px;padding:0 4px}.dot{width:7px;height:7px;border-radius:50%;background:var(--line);border:0;padding:0;cursor:pointer}.dot.active{background:var(--blue);width:20px;border-radius:999px}.hint{position:fixed;left:24px;bottom:22px;z-index:20;color:var(--muted);font-size:12px;background:rgba(255,255,255,.72);padding:8px 12px;border-radius:999px}
+    @media(max-width:900px){.two-col,.kotokod,.platform,.invest,.finish-grid,.ai-layout{grid-template-columns:1fr}.slide-inner{overflow-y:auto}.cover .cover-copy{left:8%;top:15%;max-width:78%}.cover .mascot{right:9%;bottom:5%;width:38%}.cover .side-block{width:13%}.lane{grid-template-columns:1fr}.lane .lane-body{grid-template-columns:1fr}.process{grid-template-columns:repeat(2,1fr)}.board{grid-template-columns:repeat(2,1fr)}.levels{grid-template-columns:1fr}.ai-art,.kotokod-art,.invest-art,.finish-art{height:340px}.platform{align-content:center}.shot-wrap{order:-1}.platform-copy{max-width:none}.months{margin-left:0}.t-row{grid-template-columns:1fr}.t-label{padding:0 0 10px}.timeline{overflow-x:auto}.t-grid{min-width:720px}.months{min-width:720px}.matrix{font-size:13px}.matrix th,.matrix td{padding:11px}.nav{right:12px;bottom:10px}.hint{display:none}}
+    .nav,.hint{display:none!important}
+    @media print{body{overflow:visible;background:white}.deck{display:block;height:auto;width:auto;overflow:visible}.slide{position:relative;inset:auto;opacity:1;visibility:visible;pointer-events:auto;width:1920px;height:1080px;break-after:page;page-break-after:always}.slide-inner{padding:48px 96px 96px;transform:none}.nav,.hint{display:none!important}.under{left:96px;right:96px;bottom:106px}}
+  </style>
+</head>
+<body>
+  <main class="deck" id="deck" aria-label="Продуктовая стратегия 99 баллов 2026/27">
+    <section class="slide cover" data-title="Обложка">
+      <div class="slide-inner">
+        <div class="side-block"></div>
+        <div class="cover-copy">
+          <div class="eyebrow">Продуктовая стратегия</div>
+          <h1>99 баллов<br><span class="blue">2026/27</span></h1>
+          <div class="accent-rule"></div>
+        </div>
+        <img class="mascot" src="assets/mascot-lilac.png" alt="Объёмная иллюстрация персонажа 99 баллов">
+      </div>
+    </section>
+
+    <section class="slide white" data-title="Рост выручки 99 баллов">
+      <div class="slide-inner">
+        <div class="split-title"><h2>Рост выручки 99 баллов</h2></div>
+        <div class="revenue-formula">Выручка = Лиды * Средний чек * С2 * X% + Лиды * стоимость мес * переходимость<sup>N</sup> * Y%</div>
+        <table class="matrix revenue-table" aria-label="Ограничения драйверов выручки">
+          <thead><tr><th>Драйвер</th><th>Ограничение</th></tr></thead>
+          <tbody>
+            <tr><td>Лиды</td><td>Спустя 2-4 месяца упремся в потолок классических каналов</td></tr>
+            <tr><td>Средний чек</td><td>Жесткая рыночная конкуренция + Ожидания родителей по месячному платежу</td></tr>
+            <tr><td>С2</td><td>Низкая экспертиза ОП в экзамене</td></tr>
+            <tr><td>Переходимость</td><td>Пользовательский путь требует доработок</td></tr>
+          </tbody>
+        </table>
+        <div class="under"><span class="source">X% купивших пакет месяцев на входе<br>Y% платящих помесячно</span></div>
+      </div>
+    </section>
+
+    <section class="slide white" data-title="Два типа продуктов">
+      <div class="slide-inner">
+        <div class="split-title"><h2>Два типа продуктов</h2></div>
+        <div class="two-col" style="margin-top:clamp(38px,5vw,92px);height:auto;align-items:stretch">
+          <article class="soft-card lilac"><span class="tag">Мастер-группа</span><h3>Один преподаватель<br>на большой поток</h3><ul><li>Повышенная маржинальность</li><li>Сложнее работать с переходами между месяцами</li></ul><div class="tariffs"><span class="pill">Стандарт</span><span class="pill">Про</span><span class="pill">Про Макс</span></div></article>
+          <article class="soft-card pink right"><span class="tag">Синхронные репетиторы</span><h3>Один преподаватель<br>на ограниченное число учеников</h3><ul><li>Индивидуальные занятия и мини-группы</li><li>Ниже маржинальность</li></ul><div class="tariffs"><span class="pill">Мини-группа</span><span class="pill">Индивидуально</span><span class="pill">Дуэт по запросу</span></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide surface" data-title="Два контура">
+      <div class="slide-inner">
+        <div class="split-title"><h2>Два контура работы с продуктом</h2></div>
+        <div class="lane-wrap">
+          <div class="lane"><div class="lane-title pink"><h3>Поддержание текущего курса</h3><div class="driver-heading">Драйверы выручки</div><ul class="driver-list"><li>Повышение переходимости</li></ul></div><div class="lane-body numbered-body"><div class="item"><div class="item-no">1</div><strong>Запуск нескольких потоков</strong><p>Адаптирование контента под период старта обучения</p></div><div class="item"><div class="item-no">2</div><strong>Усиление контента</strong><p>Новые уроки, переработка тем и домашние работы</p></div></div></div>
+          <div class="lane"><div class="lane-title lemon"><h3>Инвестиции в продуктовый маркетинг</h3><div class="driver-heading">Драйверы выручки</div><ul class="driver-list"><li>Новые лиды</li><li>Повышение С2</li><li>Повышение переходимости</li></ul></div><div class="lane-body numbered-body marketing-numbered-body"><div class="item"><div class="item-no">1</div><strong>Интеграция опыта продукта в ОП</strong><p>Создание системы регулярного обучения сейлзов, аттестаций.</p><div class="item-driver">Драйверы: С2, средний чек</div></div><div class="item"><div class="item-no">2</div><strong>Работа с CJM и воронкой</strong><p>Артефакты для ознакомления с продуктом и отстройки, контент-воронка до и после звонка ОП.</p><div class="item-driver">Драйверы: С2, средний чек</div></div><div class="item"><div class="item-no">3</div><strong>Разработка Marketing-first контента</strong><p>Дофаминовая пересборка контента, создание AI игр, тренажеров. Создание новой ценности на рынке. Упаковка сразу всех кейсов в SMM.</p><div class="item-driver">Драйверы: Лиды, С2, переходимость</div></div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide white" data-title="Календарь запусков и потоков мастер-группы">
+      <div class="slide-inner">
+        <div class="split-title"><h2>Календарь запусков и потоков мастер-группы</h2></div>
+        <div class="timeline">
+          <div class="months"><span class="month">Сен</span><span class="month">Окт</span><span class="month">Ноя</span><span class="month">Дек</span><span class="month">Янв</span><span class="month">Фев</span><span class="month">Мар</span><span class="month">Апр</span><span class="month">Май</span></div>
+          <div class="t-row"><div class="t-label">1 поток</div><div class="t-grid"><span class="t-block lilac-bg" style="grid-column:1/9">Синхронная программа</span></div></div>
+          <div class="t-row"><div class="t-label">2 поток</div><div class="t-grid"><span class="t-block pink-bg" style="grid-column:3/9">Записи + подключение к онлайну</span></div></div>
+          <div class="t-row"><div class="t-label">3 поток</div><div class="t-grid"><span class="t-block sage-bg" style="grid-column:4/9">Записи с догоном к концу года</span></div></div>
+          <div class="t-row"><div class="t-label">Спидран</div><div class="t-grid"><span class="t-block dark-bg" style="grid-column:7/10">Март–май · быстрая подготовка к ЕГЭ</span></div></div>
+          <div class="t-row"><div class="t-label">Летучка</div><div class="t-grid"><span class="t-block blue-bg" style="grid-column:9/10">Летучка</span></div></div>
+          <div class="t-row additional-products"><div class="t-label">Дополнительные продукты</div><div class="t-grid"><span class="t-block lemon-bg" style="grid-column:3/5">Сочинение</span><span class="t-block coral-bg" style="grid-column:5/7">Собеседование</span></div></div>
+        </div>
+        <div class="callout"><b>Драйвер:</b> дополнительные точки входа позволяют закрывать потребность учеников, начинающих в середине и конце учебного года, и повышают доходимость.</div>
+      </div>
+    </section>
+
+    <section class="slide white" data-title="Бэклог задач преподавателей">
+      <div class="slide-inner">
+        <div class="split-title"><h2>Бэклог задач преподавателей</h2></div>
+        <div class="backlog-embed"><iframe src="backlog-teachers.html" title="Бэклог задач преподавателей" scrolling="yes"></iframe></div>
+      </div>
+    </section>
+
+    <section class="slide white" data-title="Потоки и дополнительная выручка в конце года">
+      <div class="slide-inner">
+        <div class="split-title"><h2>Потоки и дополнительная выручка в конце года</h2></div>
+        <div class="detail-grid">
+          <article class="detail-card lilac"><div class="detail-no">1</div><h3>Спидран</h3><div class="meta"><b>Период:</b> март–май</div><div class="meta"><b>Целевая аудитория:</b> ученики в конце года</div><div class="meta"><b>Цель:</b> быстрая подготовка к ЕГЭ</div><ul><li>35+ уроков в записи</li><li>Домашнее задание после каждого урока</li><li>Два пробника с проверкой</li><li>Рабочие тетради и конспекты</li><li>Поддержка и проверка развёрнутых заданий на тарифе «Про»</li></ul><div class="role">Быстрый вход в экзаменационную подготовку</div></article>
+          <article class="detail-card pink"><div class="detail-no">2</div><h3>Летучка</h3><div class="meta"><b>Период:</b> май–июнь</div><div class="meta"><b>Целевая аудитория:</b> все ученики 99 баллов и новая аудитория</div><div class="meta"><b>Цель:</b> повторение всех тем ЕГЭ перед самим экзаменом</div><ul><li>10 вебинаров по ЕГЭ или 8 вебинаров по ОГЭ</li><li>Подготовительные видео к вебинарам</li><li>Рабочая тетрадь и конспект</li><li>Домашние задания после вебинаров</li><li>Пробник, шпаргалки по темам и разбор варианта</li></ul><div class="role">Финальная точка продуктовой траектории</div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide surface" data-title="Дополнительные спецкурсы">
+      <div class="slide-inner">
+        <div class="split-title"><h2>Дополнительные спецкурсы</h2></div>
+        <div class="detail-grid">
+          <article class="detail-card sky"><div class="detail-no">1</div><h3>Подготовка к итоговому сочинению</h3><div class="meta"><b>Период:</b> ноябрь · 4 вебинара</div><div class="meta"><b>Целевая аудитория:</b> 11 класс</div><div class="meta"><b>Роль линейки:</b> повысить переход с октября на ноябрь; поддержать продажи второго потока</div><ul><li>Конспект со всей информацией об итоговом сочинении</li><li>Список литературы для подготовки</li><li>Краткий разбор 45 произведений</li><li>Сборник коротких произведений</li></ul></article>
+          <article class="detail-card pink"><div class="detail-no">2</div><h3>Подготовка к итоговому собеседованию</h3><div class="meta"><b>Период:</b> 20 января–9 февраля</div><div class="meta"><b>Дата экзамена:</b> 10 февраля 2027</div><div class="meta"><b>Целевая аудитория:</b> 9 класс</div><div class="meta"><b>Роль линейки:</b> новая точка входа для других возрастов и задач</div><ul><li>Подготовка к обязательному собеседованию по русскому языку</li></ul></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide white" data-title="Календарь запусков и потоков - Репетиторы">
+      <div class="slide-inner">
+        <div class="split-title"><h2 style="white-space:nowrap">Календарь запусков и потоков - Репетиторы</h2></div>
+        <div class="tutor-calendar">
+          <div class="tutor-months"><span class="tutor-month">Сентябрь</span><span class="tutor-month">Октябрь</span><span class="tutor-month">Ноябрь</span><span class="tutor-month">Декабрь</span><span class="tutor-month">Январь</span><span class="tutor-month">Февраль</span><span class="tutor-month">Март</span><span class="tutor-month">Апрель</span><span class="tutor-month">Май</span></div>
+          <div class="tutor-row"><div class="tutor-label">Годовые</div><div class="tutor-track"><span class="tutor-bar lilac-bar" style="grid-column:1/9">Мини-группа</span></div></div>
+          <div class="tutor-row"><div class="tutor-label"></div><div class="tutor-track"><span class="tutor-bar lemon-bar" style="grid-column:1/9">Индивидуально</span></div></div>
+          <div class="tutor-row" style="margin-top:36px"><div class="tutor-label">Спринты</div><div class="tutor-track"><span class="tutor-bar sprint-bar" style="grid-column:9/10">Спринт</span></div></div>
+        </div>
+        <div class="sprint-grid">
+          <article class="sprint-card small-sprint"><h3>Малый спринт</h3><div class="sprint-meta"><b>Тариф:</b> малый спринт</div><div class="sprint-meta"><b>Количество учеников:</b> 4–12</div><div class="sprint-meta"><b>Формат:</b> 9 занятий в месяц по 1,5 часа</div><ul><li>Записи занятий</li><li>План подготовки к экзамену</li><li>Домашнее задание на платформе с проверкой</li><li>Чат с преподавателем</li></ul></article>
+          <article class="sprint-card big-sprint"><h3>Большой спринт</h3><div class="sprint-meta"><b>Тариф:</b> большой спринт</div><div class="sprint-meta"><b>Количество учеников:</b> 7–20</div><div class="sprint-meta"><b>Формат:</b> 9 занятий в месяц по 3 часа</div><ul><li>Несколько преподавателей; дополнительный преподаватель на каждые 7 учеников</li><li>Записи занятий и план подготовки</li><li>Домашнее задание на платформе с проверкой</li><li>Чат с преподавателем</li></ul></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide white" data-title="Три уровня продуктового маркетинга">
+      <div class="slide-inner">
+        <div class="split-title"><h2>Три уровня продуктового маркетинга</h2></div>
+        <div class="levels">
+          <article class="level one"><div class="level-no">01</div><h3>Интеграция опыта продукта в ОП</h3><p>Создание системы регулярного обучения сейлзов, аттестаций.</p><div class="micro">Драйверы: С2, средний чек</div></article>
+          <article class="level two"><div class="level-no">02</div><h3>Работа с CJM и воронкой</h3><p>Артефакты для ознакомления с продуктом и отстройки, контент-воронка до и после звонка ОП.</p><div class="micro">Драйверы: С2, средний чек</div></article>
+          <article class="level three"><div class="level-no">03</div><h3>Разработка Marketing-first контента</h3><p>Дофаминовая пересборка контента, создание AI-игр, тренажёров. Создание новой ценности на рынке. Упаковка сразу всех кейсов в SMM.</p><div class="micro">Драйверы: Лиды, С2, переходимость</div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide surface" data-title="AI в продукте">
+      <div class="slide-inner">
+        <div class="ai-layout">
+          <div><h2>AI-native дофаминовый контент для маркетинга</h2><div class="ai-list"><div class="ai-item"><span class="ai-dot">1</span><div><h3>Визуальные методички</h3><p>Физика, химия и математика: модель помогает увидеть силы, связи и изменение условия.</p></div></div><div class="ai-item"><span class="ai-dot">2</span><div><h3>Интерактивная практика</h3><p>После урока ученик сам меняет параметры и проверяет понимание темы.</p></div></div><div class="ai-item"><span class="ai-dot">3</span><div><h3>Медиа и воронка</h3><p>Гипотеза превращается в прототип, затем в пост, лендинг или материал для сейлза.</p></div></div></div></div>
+          <div class="ai-art"><img src="assets/mascot-lilac.png" alt="Иллюстрация AI-прототипа"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide white" data-title="Котокод">
+      <div class="slide-inner">
+        <div class="kotokod">
+          <div><h2>Котокод</h2><div class="course-cloud"><span class="course-tag">Роблокс</span><span class="course-tag">Скретч</span><span class="course-tag">Python</span><span class="course-tag">Minecraft</span><span class="course-tag">Blender</span><span class="course-tag">Веб-разработка</span><span class="course-tag">Веб-дизайн</span><span class="course-tag vibe">Vibe-coding</span></div><p class="kotokod-note"><b>Vibe-coding:</b> портируем из Eduson Kids платформу, где ребёнок создаёт игры, сайты и приложения с помощью ИИ.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide lilac" data-title="Vibe-coding by Eduson Kids">
+      <div class="slide-inner">
+        <div class="platform">
+          <div class="platform-copy"><div class="kicker">Портируем из Eduson Kids</div><h2>Vibe-coding<br>by Eduson Kids</h2><p class="lead muted" style="margin-top:24px">Платформа, где ребёнок проходит уроки и создаёт собственные игры, сайты и приложения с помощью ИИ.</p><ul class="platform-list"><li>Личный кабинет хранит проекты, файлы и переписку с помощником.</li><li>ИИ-агент помогает перейти от идеи к коду и исправить ошибки.</li><li>Ребёнок сам управляет файлами и открывает проект на весь экран.</li><li>До трёх веб-проектов можно одновременно опубликовать по ссылке.</li><li>В платформе уже доступны 13 уроков.</li></ul><div class="platform-meta"><span>Игры</span><span>Сайты</span><span>Приложения</span><span>Портфолио</span></div></div>
+          <div class="shot-wrap"><img src="assets/vibe-coding-platform.png" alt="Скриншот платформы Vibe-coding by Eduson Kids"></div>
+        </div>
+        <div class="under"><span class="source">Источник: предоставленный скриншот и ТЗ по Котокоду</span></div>
+      </div>
+    </section>
+
+    <section class="slide surface" data-title="Дополнительные продукты">
+      <div class="slide-inner">
+        <div class="invest">
+          <div><h2>Дополнительные продукты<br>как инвестиция в трафик</h2><p class="lead muted" style="margin-top:24px;max-width:780px">ВПР и лагеря не должны размывать основную деятельность. Их роль можно оценивать как дешёвый вход в будущую базу.</p><div class="invest-cards"><div class="invest-card vpr"><div class="type">Подготовка к ВПР</div><p>5–7 классы. Систематизация школьной программы и вход в коммуникацию с семьёй.</p></div><div class="invest-card camp"><div class="type">Лагерь в каникулы</div><p>5–8 классы. Повторение сложных тем и медиаконтакт перед экзаменационным годом.</p></div></div></div>
+          <div class="invest-art"><img src="assets/gift-coral.png" alt="Иллюстрация дополнительного продукта"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script>
+    const deck=document.getElementById('deck');
+    const slides=[...document.querySelectorAll('.slide')];
+    let index=0;
+    function fit(){deck.style.setProperty('--fit-scale',Math.min(window.innerWidth/1920,window.innerHeight/1080))}
+    window.addEventListener('resize',fit);fit();
+    function go(i){index=Math.max(0,Math.min(slides.length-1,i));slides.forEach((slide,n)=>slide.classList.toggle('active',n===index))}
+    document.addEventListener('keydown',e=>{if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();go(index+1)}else if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();go(index-1)}else if(e.key==='Home'){e.preventDefault();go(0)}else if(e.key==='End'){e.preventDefault();go(slides.length-1)}});
+    go(0);
+  </script>
+</body>
+</html>
