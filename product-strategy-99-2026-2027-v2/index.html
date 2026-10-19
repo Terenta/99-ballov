@@ -387,6 +387,16 @@
     .retention-note h3{font-size:30px;line-height:1.15;font-weight:600;letter-spacing:-.025em}
     .retention-note p{margin-top:12px;font-size:28px;line-height:1.25;letter-spacing:-.02em;color:var(--body)}
     /* RETENTION STREAMS CALENDAR STYLES END */
+    /* DECK ARROW NAVIGATION STYLES START */
+    .deck-navigation{position:fixed;right:max(14px,env(safe-area-inset-right));bottom:max(14px,env(safe-area-inset-bottom));z-index:50;display:flex;gap:4px}
+    .deck-nav-button{display:grid;place-items:center;width:36px;height:36px;padding:0;border:0;border-radius:50%;color:var(--ink);background:rgba(255,255,255,.2);opacity:.32;cursor:pointer;touch-action:manipulation;transition:opacity .15s ease,background .15s ease}
+    .deck-nav-button svg{display:block;width:18px;height:18px;pointer-events:none}
+    .deck-nav-button:hover,.deck-nav-button:focus-visible{opacity:.9;background:rgba(255,255,255,.75)}
+    .deck-nav-button:focus-visible{outline:2px solid var(--blue-dark);outline-offset:2px}
+    .deck-nav-button:disabled{opacity:.1;background:transparent;cursor:default}
+    @media(pointer:coarse){.deck-nav-button{width:44px;height:44px}}
+    @media print{.deck-navigation{display:none}}
+    /* DECK ARROW NAVIGATION STYLES END */
   </style>
 </head>
 <body>
@@ -1149,10 +1159,20 @@
 
 
   </main>
+  <!-- DECK ARROW NAVIGATION START -->
+  <nav class="deck-navigation" aria-label="Навигация по слайдам">
+    <button class="deck-nav-button" id="deck-previous" type="button" aria-label="Предыдущий слайд" title="Предыдущий слайд" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5L8 12L15 19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <button class="deck-nav-button" id="deck-next" type="button" aria-label="Следующий слайд" title="Следующий слайд"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5L16 12L9 19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  </nav>
+  <!-- DECK ARROW NAVIGATION END -->
   <script>
     const deck=document.getElementById('deck');
     const slides=[...deck.children].filter(element=>element.classList.contains('slide'));
     const importedFrames=[...deck.querySelectorAll('.imported-slide iframe')];
+    const previousButton=document.getElementById('deck-previous');
+    const nextButton=document.getElementById('deck-next');
+    previousButton.addEventListener('click',()=>go(index-1));
+    nextButton.addEventListener('click',()=>go(index+1));
     let index=0;
     function fit(){deck.style.setProperty('--fit-scale',Math.min(window.innerWidth/1920,window.innerHeight/1080))}
     window.addEventListener('resize',fit);fit();
@@ -1177,6 +1197,8 @@
     function go(i){
       index=Math.max(0,Math.min(slides.length-1,i));
       slides.forEach((slide,n)=>slide.classList.toggle('active',n===index));
+      previousButton.disabled=index===0;
+      nextButton.disabled=index===slides.length-1;
       syncImportedSlides();
       syncNativeVideos();
       deck.focus({preventScroll:true});
@@ -1197,7 +1219,7 @@
     });
     document.addEventListener('visibilitychange',syncImportedSlides);
     document.addEventListener('keydown',event=>{
-      if(event.altKey||event.ctrlKey||event.metaKey)return;
+      if(event.altKey||event.ctrlKey||event.metaKey||event.target.closest?.('.deck-navigation'))return;
       if(navigate(event.key))event.preventDefault();
     });
     go(0);
