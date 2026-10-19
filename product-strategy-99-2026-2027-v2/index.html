@@ -1,0 +1,1206 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Продуктовая стратегия 99 баллов 2026/27</title>
+  <style>
+    @font-face{font-family:Inter;src:url('assets/fonts/Inter-Regular.woff') format('woff');font-weight:400;font-style:normal;font-display:swap}
+    @font-face{font-family:Inter;src:url('assets/fonts/Inter-Medium.woff') format('woff');font-weight:500;font-style:normal;font-display:swap}
+    @font-face{font-family:Inter;src:url('assets/fonts/Inter-SemiBold.woff') format('woff');font-weight:600;font-style:normal;font-display:swap}
+    @font-face{font-family:Inter;src:url('assets/fonts/Inter-Bold.woff') format('woff');font-weight:700;font-style:normal;font-display:swap}
+    :root{
+      --ink:#1c1c1c;--charcoal:#35383a;--paper:#fff;--surface:#f5f5f5;--body:#555558;--muted:#8e8e93;--line:#d2d2d4;
+      --blue:#007aff;--blue-dark:#0062cc;--pink:#fae6e7;--lemon:#fffbc3;--lilac:#eddcff;--sage:#e8f2d5;--sky:#bddcff;
+      --platform:#c4b8e0;--rose:#f8aab8;--coral:#f16979;--teal:#176b88;--promo-pink:#fb8398;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:#e9e9eb;color:var(--ink);font-family:Inter,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+    body{overflow:hidden}
+    button{font:inherit}
+    .deck{height:100vh;width:100vw;display:block;position:relative;overflow:hidden;background:var(--paper)}
+    .slide{position:absolute;inset:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;overflow:hidden;background:var(--paper);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .18s ease}
+    .imported-slide iframe{display:block;width:100%;height:100%;border:0;background:var(--paper)}
+    .deck:focus{outline:none}
+    .slide.active{opacity:1;visibility:visible;pointer-events:auto;z-index:1}
+    .slide-inner{width:1920px;height:1080px;position:relative;padding:48px 96px 96px;overflow:hidden;transform:scale(var(--fit-scale,1));transform-origin:center center}
+    .slide-inner:after{content:"";position:absolute;inset:0;pointer-events:none;border:1px solid rgba(28,28,28,.04)}
+    .white{background:var(--paper)}.surface{background:var(--surface)}.charcoal{background:var(--charcoal);color:white}.lilac{background:var(--lilac)}.pink{background:var(--pink)}.lemon{background:var(--lemon)}.sage{background:var(--sage)}.sky{background:var(--sky)}
+    .eyebrow{font-size:clamp(12px,1.1vw,22px);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+    .kicker{font-size:clamp(14px,1.15vw,23px);letter-spacing:.09em;text-transform:uppercase;color:var(--blue-dark);font-weight:600;margin-bottom:1.2rem}
+    h1,h2,h3,p{margin:0}h1{font-size:clamp(42px,6vw,116px);line-height:.97;letter-spacing:-.055em;font-weight:500}h2{font-size:clamp(32px,4vw,76px);line-height:1.02;letter-spacing:-.045em;font-weight:500}h3{font-size:clamp(20px,2.2vw,42px);line-height:1.05;font-weight:600;letter-spacing:-.025em}.lead{font-size:clamp(20px,2vw,39px);line-height:1.2;letter-spacing:-.025em}.body{font-size:clamp(15px,1.36vw,27px);line-height:1.37}.small{font-size:clamp(12px,1.06vw,21px);line-height:1.3;color:var(--body)}
+    .muted{color:var(--body)}.blue{color:var(--blue-dark)}.white-text{color:#fff}.strong{font-weight:600}.under{position:absolute;bottom:106px;left:clamp(34px,5vw,96px);right:clamp(34px,5vw,96px);display:flex;justify-content:space-between;align-items:flex-end;z-index:2}.under .source{font-size:clamp(11px,.8vw,16px);color:var(--muted);max-width:75%}
+    .accent-rule{width:clamp(72px,6vw,120px);height:7px;border-radius:999px;background:var(--blue);margin:26px 0}.accent-rule.warm{background:var(--coral)}.accent-rule.dark{background:var(--ink)}
+    .cover{background:linear-gradient(123deg,#fff 0%,#fff 53%,#e6f1ff 100%)}
+    .cover .slide-inner{flex-shrink:0}.cover .slide-inner:after{display:none}
+    .cover h1{font-size:116px}.cover .eyebrow{font-size:22px}.cover .accent-rule{width:120px}
+    /* The blue background reaches the window edge and keeps its boundary aligned with the fitted canvas. */
+    .cover .side-block{position:absolute;left:calc(50% + 633.6px * var(--fit-scale,1));right:0;top:0;bottom:0;background:var(--blue);opacity:.92}.cover .cover-copy{position:absolute;left:10%;top:18%;max-width:64%;z-index:1}.cover .cover-mark{font-size:clamp(18px,1.5vw,30px);color:var(--body);letter-spacing:.04em;margin-top:26px}.cover .cover-note{margin-top:36px;color:var(--body);font-size:clamp(16px,1.45vw,28px);max-width:690px;line-height:1.35}.cover .mascot{position:absolute;right:11%;bottom:9%;width:25%;max-width:490px;z-index:1;filter:drop-shadow(0 22px 30px rgba(0,0,0,.10))}.cover .year{position:absolute;right:3.3%;bottom:11%;color:white;font-weight:600;writing-mode:vertical-rl;transform:rotate(180deg);letter-spacing:.08em;font-size:clamp(15px,1.2vw,24px)}
+    .brand-divider .cover-copy{top:40%;max-width:70%}
+    .brand-divider h2{font-size:184px;line-height:1;letter-spacing:-.055em;white-space:nowrap}
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:clamp(22px,3vw,64px);height:100%;align-items:center}.three-col{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.2vw,42px)}
+    .split-title{max-width:800px;margin-top:4vh}.split-title p{max-width:720px;margin-top:24px}.numbered{font-size:clamp(15px,1.2vw,23px);color:var(--blue-dark);font-weight:600;letter-spacing:.08em;margin-bottom:18px}
+    .soft-card{border-radius:clamp(18px,2.2vw,42px);padding:clamp(24px,3vw,58px);position:relative;overflow:hidden;min-height:260px}.soft-card:after{content:"";position:absolute;width:38%;aspect-ratio:1;border-radius:50%;right:-12%;bottom:-36%;background:rgba(255,255,255,.5)}
+    .soft-card .tag{display:inline-flex;border-radius:999px;background:rgba(255,255,255,.7);padding:10px 18px;font-size:clamp(12px,1vw,19px);font-weight:600;color:var(--body);margin-bottom:28px}.soft-card .label{font-size:clamp(13px,1.12vw,22px);color:var(--body);margin-top:20px;max-width:480px}.soft-card ul{padding:0;margin:26px 0 0;list-style:none;display:grid;gap:10px;position:relative;z-index:1}.soft-card li{font-size:clamp(14px,1.22vw,24px);line-height:1.28;max-width:630px}.soft-card li:before{content:"";display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--blue);margin-right:12px;vertical-align:middle}.soft-card.right li:before{background:var(--coral)}
+    .tariffs{display:flex;gap:12px;margin-top:30px;flex-wrap:wrap}.pill{padding:12px 18px;border-radius:999px;background:rgba(255,255,255,.75);font-size:clamp(12px,1vw,18px);font-weight:600}.pill.blue-pill{background:var(--blue);color:white}.pill.dark-pill{background:var(--ink);color:white}
+    .lane-wrap{margin-top:clamp(34px,4vw,76px);display:grid;gap:18px}.lane{display:grid;grid-template-columns:26% 1fr;align-items:stretch;min-height:180px;border-radius:28px;overflow:hidden}.lane .lane-title{padding:clamp(22px,2.2vw,42px);display:flex;flex-direction:column;justify-content:center}.lane .lane-title h3{margin-bottom:18px}.lane .driver-heading{font-size:clamp(14px,1.1vw,22px);font-weight:600;color:var(--body);line-height:1.3}.lane .driver-list{list-style:none;padding:0;margin:10px 0 0;display:grid;gap:7px}.lane .driver-list li{font-size:clamp(14px,1.1vw,22px);color:var(--body);line-height:1.3}.lane .driver-list li:before{content:"•";display:inline-block;margin-right:9px;color:var(--blue);font-weight:700}.lane:nth-child(2) .driver-list li:before{color:#d59d00}.lane .lane-body{background:white;padding:clamp(22px,2.2vw,42px);display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-content:center}.lane .item{border-left:4px solid var(--blue);padding-left:18px}.lane .item:nth-child(2){border-color:var(--coral)}.lane .item:nth-child(3){border-color:#6c4dcc}.lane .item strong{display:block;font-size:clamp(17px,1.45vw,29px);margin-bottom:6px;font-weight:600}.lane .item p{font-size:clamp(13px,1.08vw,21px);line-height:1.28;color:var(--body)}.lane .item-driver{margin-top:14px;font-size:clamp(12px,.95vw,18px);line-height:1.25;font-weight:600;color:var(--blue-dark)}.lane .item:nth-child(2) .item-driver{color:var(--coral)}.lane .item:nth-child(3) .item-driver{color:#6c4dcc}.lane .lane-body.numbered-body{grid-template-columns:repeat(2,1fr);gap:20px}.lane .numbered-body .item{border:0;border-radius:22px;padding:clamp(22px,2vw,38px);min-height:180px}.lane .numbered-body .item:nth-child(1){background:var(--lilac)}.lane .numbered-body .item:nth-child(2){background:var(--lemon)}.lane .numbered-body .item-no{font-size:clamp(20px,1.8vw,35px);font-weight:600;color:var(--blue-dark);line-height:1;margin-bottom:22px}.lane .numbered-body .item strong{font-size:clamp(17px,1.45vw,29px);margin-bottom:10px}.lane .numbered-body .item p{font-size:clamp(13px,1.08vw,21px);line-height:1.28;color:var(--body)}.lane .lane-body.marketing-numbered-body{grid-template-columns:repeat(3,1fr)}.lane .marketing-numbered-body .item{min-height:240px}.lane .marketing-numbered-body .item:nth-child(1){background:var(--lilac)}.lane .marketing-numbered-body .item:nth-child(2){background:var(--pink)}.lane .marketing-numbered-body .item:nth-child(3){background:var(--sky)}
+    .timeline .months,.timeline .t-grid{background:none}
+    .timeline .t-grid:before,.timeline .t-grid:after{display:none!important}
+    .timeline{margin-top:clamp(26px,3vw,54px);position:relative}.months{display:grid;grid-template-columns:repeat(9,1fr);gap:7px;margin-left:16%;margin-bottom:14px;background:repeating-linear-gradient(to right,transparent 0,transparent calc(11.111% - 1px),rgba(142,142,147,.24) calc(11.111% - 1px),rgba(142,142,147,.24) 11.111%)}.month{font-size:clamp(10px,.8vw,16px);text-align:center;color:var(--muted);font-weight:600;text-transform:uppercase}.t-row{display:grid;grid-template-columns:16% 1fr;min-height:68px;margin-bottom:10px}.t-label{font-size:clamp(14px,1.1vw,22px);font-weight:600;display:flex;align-items:center;padding-right:18px}.t-grid{display:grid;grid-template-columns:repeat(9,1fr);gap:7px;align-items:center;position:relative;background:repeating-linear-gradient(to right,transparent 0,transparent calc(11.111% - 1px),rgba(142,142,147,.24) calc(11.111% - 1px),rgba(142,142,147,.24) 11.111%)}.t-grid:before{content:"";position:absolute;left:0;right:0;top:50%;height:2px;background:var(--line);z-index:0}.t-grid:after{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(to right,transparent 0,transparent calc(11.111% - 1px),rgba(142,142,147,.28) calc(11.111% - 1px),rgba(142,142,147,.28) 11.111%);z-index:2}.t-row.additional-products .t-grid{background:none}.t-row.additional-products .t-grid:before,.t-row.additional-products .t-grid:after{display:none}.t-block{height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;padding:0 9px;position:relative;z-index:1;font-size:clamp(11px,.9vw,17px);font-weight:600;text-align:center;line-height:1.1}.t-block.blue-bg{background:var(--blue);color:#fff}.t-block.lilac-bg{background:var(--lilac)}.t-block.pink-bg{background:var(--pink)}.t-block.lemon-bg{background:var(--lemon)}.t-block.sage-bg{background:var(--sage)}.t-block.coral-bg{background:#ffd2d8}.t-block.dark-bg{background:var(--charcoal);color:#fff}.callout{margin-top:28px;display:flex;gap:16px;align-items:center;border-radius:18px;background:var(--lemon);padding:18px 22px;max-width:820px;font-size:clamp(13px,1.08vw,21px);line-height:1.25}.callout b{font-weight:600}
+    .process{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:clamp(40px,5vw,96px)}.process-step{min-height:285px;border-radius:28px;padding:clamp(22px,2.2vw,42px);position:relative;background:white}.process-step .step-no{font-size:clamp(12px,.95vw,18px);font-weight:700;letter-spacing:.08em;color:var(--blue-dark)}.process-step h3{margin-top:30px;font-size:clamp(19px,1.85vw,36px)}.process-step p{margin-top:18px;font-size:clamp(13px,1.07vw,21px);line-height:1.3;color:var(--body)}.process-step:nth-child(2){background:var(--lilac)}.process-step:nth-child(3){background:var(--lemon)}.process-step:nth-child(4){background:var(--sage)}.process-foot{margin-top:30px;color:var(--body);font-size:clamp(13px,1.1vw,22px);max-width:860px}
+    .board{display:grid;grid-template-columns:1.15fr 1fr 1fr 1fr;gap:14px;margin-top:clamp(30px,4vw,72px)}.board-col{min-height:420px;border-radius:26px;padding:26px 24px;background:var(--surface);border-top:8px solid var(--blue)}.board-col:nth-child(2){border-color:var(--coral);background:var(--pink)}.board-col:nth-child(3){border-color:#6c4dcc;background:var(--lilac)}.board-col:nth-child(4){border-color:#e3b000;background:var(--lemon)}.board-col h3{font-size:clamp(19px,1.55vw,30px);margin-bottom:18px}.board-col p{font-size:clamp(13px,1.06vw,20px);line-height:1.34;color:var(--body)}.board-col ul{list-style:none;padding:0;margin:22px 0 0;display:grid;gap:14px}.board-col li{font-size:clamp(13px,1.06vw,20px);line-height:1.27}.board-col li:before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--blue);margin-right:9px;vertical-align:middle}.board-col:nth-child(2) li:before{background:var(--coral)}.board-col:nth-child(3) li:before{background:#6c4dcc}.board-col:nth-child(4) li:before{background:#d59d00}
+    .teacher-common{margin-top:clamp(18px,2vw,34px);padding:14px 18px;border-radius:16px;background:var(--surface);color:var(--body);font-size:clamp(13px,1vw,19px);line-height:1.25}.teacher-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:clamp(20px,2.5vw,42px);align-items:stretch}.teacher-card{border-radius:20px;padding:18px 20px;min-height:190px;overflow:hidden}.teacher-card:nth-child(4n+1){background:var(--lilac)}.teacher-card:nth-child(4n+2){background:var(--pink)}.teacher-card:nth-child(4n+3){background:var(--lemon)}.teacher-card:nth-child(4n){background:var(--sage)}.teacher-card h3{font-size:clamp(15px,1.12vw,22px);line-height:1.08;margin-bottom:5px}.teacher-subject{font-size:clamp(11px,.85vw,16px);line-height:1.2;font-weight:600;color:var(--blue-dark);margin-bottom:11px}.teacher-base{font-size:clamp(11px,.78vw,15px);line-height:1.18;color:var(--body);margin-bottom:9px}.teacher-card ul{list-style:none;padding:0;margin:0;display:grid;gap:5px}.teacher-card li{font-size:clamp(11px,.78vw,15px);line-height:1.16;padding-left:13px;position:relative}.teacher-card li:before{content:"•";position:absolute;left:0;color:var(--blue-dark);font-weight:700}.teacher-card:nth-child(4n+2) li:before{color:var(--coral)}.teacher-card:nth-child(4n+3) li:before{color:#d59d00}.teacher-card:nth-child(4n) li:before{color:#5e9a35}.teacher-card .no-extra{font-size:clamp(11px,.78vw,15px);line-height:1.16;color:var(--body)}
+    .backlog-embed{position:absolute;left:96px;right:96px;top:190px;bottom:48px;overflow:hidden;border-radius:20px;background:#fff}.backlog-embed iframe{display:block;width:100%;height:100%;border:0;overflow:auto}
+    .matrix{margin-top:clamp(28px,3.5vw,64px);border-collapse:separate;border-spacing:0;width:100%;font-size:clamp(13px,1.08vw,21px);overflow:hidden;border-radius:24px}.matrix th{background:var(--charcoal);color:#fff;text-align:left;padding:18px 20px;font-weight:500}.matrix td{padding:18px 20px;border-bottom:1px solid var(--line);background:#fff;vertical-align:top;line-height:1.25}.matrix tr:last-child td{border-bottom:0}.matrix tr:nth-child(even) td{background:#fafafa}.effect{display:inline-flex;padding:7px 12px;border-radius:999px;font-size:clamp(11px,.85vw,16px);font-weight:600;background:var(--lilac);margin-right:4px;margin-bottom:4px}.effect.rev{background:var(--lemon)}.effect.conv{background:var(--pink)}.effect.future{background:var(--sage)}
+    .revenue-formula{margin-top:clamp(36px,4vw,76px);padding:clamp(26px,2.3vw,44px) clamp(30px,3vw,60px);border-radius:28px;background:var(--lilac);font-size:clamp(18px,1.55vw,31px);line-height:1.15;letter-spacing:-.035em;font-weight:500;white-space:nowrap}.revenue-formula sup{font-size:.58em;line-height:0;vertical-align:super}.revenue-table{margin-top:clamp(26px,3vw,54px);table-layout:fixed;font-size:clamp(14px,1.12vw,22px)}.revenue-table th:nth-child(1){width:30%}.revenue-table th:nth-child(2){width:70%}.revenue-table td:first-child{font-weight:600}
+    .detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:clamp(28px,3.5vw,64px);align-items:stretch}.detail-card{border-radius:28px;padding:clamp(24px,2.5vw,46px);min-height:620px;position:relative;overflow:hidden}.detail-card.lilac{background:var(--lilac)}.detail-card.pink{background:var(--pink)}.detail-card.lemon{background:var(--lemon)}.detail-card.sky{background:var(--sky)}.detail-card .detail-no{font-size:clamp(26px,2.2vw,42px);font-weight:600;line-height:1;color:var(--blue-dark);margin-bottom:22px}.detail-card h3{font-size:clamp(24px,2.1vw,40px);line-height:1.05;margin-bottom:22px}.detail-card .meta{font-size:clamp(14px,1.1vw,22px);line-height:1.32;margin-top:10px;color:var(--body)}.detail-card .meta b{font-weight:600;color:var(--ink)}.detail-card ul{list-style:none;padding:0;margin:26px 0 0;display:grid;gap:12px}.detail-card li{font-size:clamp(14px,1.1vw,22px);line-height:1.28;padding-left:20px;position:relative}.detail-card li:before{content:"•";position:absolute;left:0;color:var(--blue-dark);font-weight:700}.detail-card .role{margin-top:28px;padding-top:18px;border-top:1px solid rgba(28,28,28,.18);font-size:clamp(14px,1.08vw,21px);line-height:1.28;font-weight:600;color:var(--body)}
+    .tutor-calendar{margin-top:clamp(24px,3vw,52px)}.tutor-months{display:grid;grid-template-columns:repeat(9,1fr);gap:10px;margin-left:16%;margin-bottom:24px}.tutor-month{padding:10px 8px;border:1px solid var(--charcoal);border-radius:11px;background:#d9f0f8;text-align:center;font-size:clamp(11px,.86vw,17px);font-weight:500;text-transform:uppercase}.tutor-row{display:grid;grid-template-columns:16% 1fr;min-height:48px;margin-bottom:10px}.tutor-label{font-size:clamp(14px,1.12vw,22px);font-weight:600;color:var(--body);display:flex;align-items:center;padding-right:14px}.tutor-track{display:grid;grid-template-columns:repeat(9,1fr);gap:8px;align-items:center}.tutor-bar{height:42px;border:1px solid var(--charcoal);border-radius:7px;display:flex;align-items:center;justify-content:center;padding:0 10px;font-size:clamp(12px,.95vw,18px);font-weight:600;text-align:center;line-height:1.1}.tutor-bar.lilac-bar{background:#e4c9f0}.tutor-bar.lemon-bar{background:#ffeca4}.tutor-bar.sprint-bar{background:#f6c66e}.sprint-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:clamp(26px,3vw,52px)}.sprint-card{border:1px solid rgba(28,28,28,.2);border-radius:24px;padding:clamp(22px,2.2vw,40px);min-height:300px}.sprint-card.small-sprint{background:#f3f5f7}.sprint-card.big-sprint{background:#e4c9f0}.sprint-card h3{font-size:clamp(22px,1.9vw,36px);line-height:1.05;margin-bottom:18px;text-align:center}.sprint-card .sprint-meta{font-size:clamp(13px,1.05vw,20px);line-height:1.3;margin-top:7px;color:var(--body)}.sprint-card .sprint-meta b{color:var(--ink)}.sprint-card ul{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:8px}.sprint-card li{font-size:clamp(13px,1.02vw,20px);line-height:1.2;padding-left:16px;position:relative}.sprint-card li:before{content:"•";position:absolute;left:0;color:var(--blue-dark);font-weight:700}
+    .levels{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:clamp(30px,3.2vw,62px)}.level{padding:clamp(24px,2.5vw,48px);padding-bottom:clamp(28px,3vw,58px);border-radius:28px;min-height:360px;position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:flex-start}.level .level-no{font-size:clamp(42px,5vw,92px);line-height:1;font-weight:500;color:rgba(28,28,28,.16)}.level h3{margin-top:18px}.level p{margin-top:22px;font-size:clamp(14px,1.15vw,23px);line-height:1.35;color:var(--body)}.level .micro{margin-top:auto;padding-top:24px;font-size:clamp(12px,.98vw,19px);font-weight:600;color:var(--blue-dark)}.level.one{background:var(--pink)}.level.two{background:var(--lilac)}.level.three{background:var(--lemon)}
+    .ai-layout{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;height:100%;align-items:center}.ai-list{display:grid;gap:18px;margin-top:32px}.ai-item{display:grid;grid-template-columns:38px 1fr;gap:15px;align-items:start}.ai-item .ai-dot{width:34px;height:34px;border-radius:50%;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:600}.ai-item h3{font-size:clamp(18px,1.65vw,32px)}.ai-item p{margin-top:7px;font-size:clamp(13px,1.08vw,21px);line-height:1.3;color:var(--body)}.ai-art{height:70%;border-radius:42px;background:linear-gradient(135deg,#f7f1ff 0%,#cadbff 60%,#fff 100%);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}.ai-art:before{content:"";position:absolute;width:78%;height:66%;border-radius:50%;background:#fff;transform:rotate(-14deg);opacity:.64}.ai-art img{width:62%;max-width:480px;position:relative;z-index:1;filter:drop-shadow(0 25px 25px rgba(48,48,90,.18))}
+    .kotokod{display:grid;grid-template-columns:1fr;gap:42px;align-items:center;height:100%}.course-cloud{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px;max-width:760px}.course-tag{padding:17px 23px;border-radius:999px;background:var(--surface);font-size:clamp(15px,1.35vw,27px);font-weight:600}.course-tag:nth-child(1){background:var(--pink)}.course-tag:nth-child(2){background:var(--lilac)}.course-tag:nth-child(3){background:var(--sky)}.course-tag:nth-child(4){background:var(--sage)}.course-tag:nth-child(5){background:#ead4c2}.course-tag:nth-child(6){background:#d6e9ff}.course-tag.vibe{background:var(--lemon);border:2px solid #e3b000}.kotokod-note{margin-top:30px;font-size:clamp(14px,1.15vw,23px);line-height:1.35;color:var(--body);max-width:760px}.kotokod-art{height:65%;border-radius:42px;background:var(--surface);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}.kotokod-art:after{content:"KOTOKOD";position:absolute;right:-6%;bottom:8%;font-size:clamp(50px,8vw,150px);font-weight:700;color:rgba(0,122,255,.09);letter-spacing:-.08em}.kotokod-art img{width:56%;position:relative;z-index:1;filter:drop-shadow(0 24px 24px rgba(0,0,0,.13))}
+    .platform{display:grid;grid-template-columns:.8fr 1.2fr;gap:42px;align-items:center;height:100%}.platform-copy{max-width:600px}.platform-copy h2{max-width:560px}.platform-list{list-style:none;padding:0;margin:30px 0 0;display:grid;gap:15px}.platform-list li{font-size:clamp(14px,1.2vw,24px);line-height:1.28}.platform-list li:before{content:"";display:inline-block;width:12px;height:12px;border-radius:50%;background:var(--blue);margin-right:13px;vertical-align:middle}.shot-wrap{padding:24px;border-radius:40px;background:linear-gradient(135deg,#eee7ff,#c4b8e0 50%,#d8e9ff);box-shadow:0 24px 55px rgba(54,45,100,.18);transform:rotate(1.4deg)}.shot-wrap img{display:block;width:100%;border-radius:22px;box-shadow:0 8px 20px rgba(0,0,0,.12)}.platform-meta{margin-top:24px;display:flex;gap:10px;flex-wrap:wrap}.platform-meta span{font-size:clamp(12px,.95vw,18px);padding:10px 14px;border-radius:999px;background:rgba(255,255,255,.72);font-weight:600}
+    .invest{display:grid;grid-template-columns:1.05fr .95fr;gap:50px;height:100%;align-items:center}.invest-cards{display:grid;gap:18px;margin-top:32px}.invest-card{display:grid;grid-template-columns:170px 1fr;gap:22px;align-items:center;border-radius:24px;padding:20px 24px;background:white}.invest-card .type{font-weight:600;font-size:clamp(16px,1.35vw,27px)}.invest-card p{font-size:clamp(13px,1.06vw,21px);color:var(--body);line-height:1.28}.invest-card.vpr{background:var(--lemon)}.invest-card.camp{background:var(--pink)}.invest-art{height:70%;display:flex;align-items:center;justify-content:center;position:relative}.invest-art:before{content:"";position:absolute;inset:10% 6% 8%;background:var(--charcoal);border-radius:45% 55% 44% 56% / 54% 42% 58% 46%;transform:rotate(-7deg)}.invest-art img{width:65%;position:relative;z-index:1;filter:drop-shadow(0 25px 25px rgba(0,0,0,.18))}
+    .finish{background:linear-gradient(130deg,#fff 0%,#fff 45%,#dfeaff 100%)}.finish-grid{display:grid;grid-template-columns:1fr 1fr;gap:46px;align-items:center;height:100%}.finish-list{display:grid;gap:14px;margin-top:30px}.finish-item{display:grid;grid-template-columns:45px 1fr;gap:15px;align-items:start}.finish-item span{width:40px;height:40px;border-radius:50%;background:var(--blue);color:white;display:flex;align-items:center;justify-content:center;font-weight:600}.finish-item p{font-size:clamp(15px,1.25vw,24px);line-height:1.3}.finish-art{height:70%;position:relative;display:flex;align-items:center;justify-content:center}.finish-art img{width:74%;max-width:610px;filter:drop-shadow(0 28px 34px rgba(0,0,0,.14))}.end-note{margin-top:34px;font-size:clamp(13px,1.05vw,20px);color:var(--body);max-width:640px}
+    .key-metrics .slide-inner{flex-shrink:0}
+    .key-metrics .split-title{max-width:none;margin-top:43px}
+    .key-metrics h2{font-size:76px}
+    .metrics-period{margin-top:22px;font-size:30px;line-height:1.25;color:var(--body);letter-spacing:-.02em}
+    .metrics-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:48px;align-items:start}
+    .metrics-heading{padding:23px 28px;border-radius:28px 28px 0 0;font-size:34px;line-height:1.1;font-weight:600;letter-spacing:-.025em}
+    .metrics-table{width:100%;table-layout:fixed;border-collapse:separate;border-spacing:0;font-size:26px;line-height:1.2;font-variant-numeric:tabular-nums}
+    .metrics-table col:nth-child(1){width:44%}.metrics-table col:nth-child(2){width:17%}.metrics-table col:nth-child(3){width:18%}.metrics-table col:nth-child(4){width:21%}
+    .metrics-table th,.metrics-table td{height:65px;padding:16px 14px;border-bottom:1px solid #e6e6e8;text-align:right;white-space:nowrap}
+    .metrics-table thead th{height:58px;background:var(--surface);color:var(--body);font-size:22px;font-weight:500}
+    .metrics-table th:first-child{padding-left:28px;text-align:left}
+    .metrics-table th:last-child,.metrics-table td:last-child{padding-right:22px}
+    .metrics-table tbody th{font-size:25px;font-weight:400}
+    .metrics-table tbody td:nth-child(2){color:var(--body)}
+    .metrics-table tbody td:nth-child(3){font-weight:600}
+    .metrics-table .metric-up{color:#237a44}.metrics-table .metric-down{color:#be3c4c}
+    .metrics-summary{display:grid;grid-template-columns:repeat(3,1fr);margin:32px 0 0;padding:28px 0;background:var(--lilac);border-radius:28px}
+    .metrics-summary div{display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 26px}.metrics-summary div+div{border-left:1px solid rgba(28,28,28,.12)}
+    .metrics-summary dt{margin-top:10px;font-size:23px;line-height:1.25;color:var(--body)}
+    .metrics-summary dd{order:-1;margin:0;font-size:48px;line-height:1;font-weight:600;letter-spacing:-.035em;font-variant-numeric:tabular-nums}
+    .course-distribution .slide-inner{flex-shrink:0}
+    .distribution-header{display:flex;justify-content:space-between;align-items:flex-start;gap:48px;margin-top:43px;min-height:72px}
+    .distribution-header h2{font-size:70px;white-space:nowrap}
+    .distribution-formats{display:grid;grid-template-columns:repeat(4,1fr);margin-top:16px}
+    .distribution-format h3{display:flex;align-items:center;gap:13px;font-size:30px;font-weight:500;line-height:1.1;letter-spacing:-.02em}
+    .distribution-key{display:inline-block;width:17px;height:17px;border-radius:4px;background:var(--series-color)}
+    .distribution-percent{margin-top:12px;font-size:96px;line-height:1;font-weight:500;letter-spacing:-.055em;font-variant-numeric:tabular-nums}
+    .distribution-percent span{font-size:48px;letter-spacing:-.03em;margin-left:5px}
+    .distribution-format:first-child .distribution-percent{color:var(--blue-dark)}
+    .distribution-stack{display:flex;gap:3px;height:28px;border-radius:10px;overflow:hidden;margin-top:16px}
+    .distribution-counts{display:grid;grid-template-columns:repeat(4,1fr);margin-top:14px;font-variant-numeric:tabular-nums}
+    .distribution-course-count{font-size:28px;line-height:1.2}.distribution-course-count strong{font-weight:600}
+    .distribution-student-count{font-size:24px;line-height:1.2;color:var(--body);margin-top:4px}
+    .distribution-multi{font-size:22px;line-height:1.2;color:var(--body);margin-top:4px}
+    .distribution-subject-heading{display:flex;align-items:baseline;justify-content:space-between;gap:32px;margin-top:24px}
+    .distribution-subject-heading h3{font-size:32px;font-weight:500}.distribution-subject-heading p{font-size:22px;color:var(--body)}
+    .distribution-rankings{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:36px;margin-top:16px}
+    .distribution-rating-column{min-width:0}
+    .distribution-rating-column h4{margin:0;font-size:30px;line-height:1.1;font-weight:600;letter-spacing:-.02em}
+    .distribution-rating-list{list-style:none;margin:14px 0 0;padding:0}
+    .distribution-rating-row{height:37px}
+    .distribution-rating-label{display:grid;grid-template-columns:minmax(0,1fr) 92px;gap:14px;align-items:baseline;font-size:25px;line-height:28px;font-variant-numeric:tabular-nums}
+    .distribution-rating-name{white-space:nowrap;letter-spacing:-.025em}
+    .distribution-rating-share{text-align:right;font-size:26px;font-weight:500}
+    .distribution-rating-track{height:4px;border-radius:4px;margin-top:3px;overflow:hidden}
+    .distribution-rating-track span{display:block;height:100%;background:var(--rating-color);border-radius:4px}
+    .distribution-rating-row.leading .distribution-rating-label{font-weight:600}
+    .distribution-rating-row.leading .distribution-rating-share{color:var(--ink);font-weight:600}
+    .russia-comparison .slide-inner{flex-shrink:0}
+    .benchmark-header{margin-top:43px;min-height:126px}.benchmark-header h2{font-size:72px;white-space:nowrap}
+    .benchmark-exams{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:64px;margin-top:36px}
+    .benchmark-exam{min-width:0}.benchmark-exam h3{font-size:40px;line-height:1.1;font-weight:500}
+    .benchmark-table{width:100%;table-layout:fixed;border-collapse:collapse;margin-top:18px;font-variant-numeric:tabular-nums}
+    .benchmark-table thead th{height:46px;padding:0 8px 10px;font-size:22px;line-height:1.2;font-weight:500;text-align:right;color:var(--body);border-bottom:1px solid var(--line)}
+    .benchmark-table thead th:first-child{text-align:left;padding-left:0}
+    .benchmark-table thead .benchmark-ours-label{color:var(--blue-dark);font-size:21px;letter-spacing:-.02em;white-space:nowrap}
+    .benchmark-table tbody th,.benchmark-table tbody td{height:38px;padding:3px 8px;border-bottom:1px solid #ededf0;vertical-align:middle}
+    .benchmark-table tbody th{text-align:left;padding-left:0;font-size:25px;line-height:1.2;font-weight:400;letter-spacing:-.02em;white-space:nowrap}
+    .benchmark-table tbody td{text-align:right;font-size:26px;line-height:1.2}
+    .benchmark-table .benchmark-country{color:var(--body)}.benchmark-table .benchmark-ours{font-weight:600}
+    .benchmark-table tbody td:last-child{padding-right:0;padding-left:16px}
+    .benchmark-table .benchmark-row-below{background:#fdf1f3}.benchmark-table .benchmark-row-above{background:#eff6ff}
+    .benchmark-delta{display:flex;align-items:center;gap:18px}
+    .benchmark-delta.positive{color:var(--blue-dark)}.benchmark-delta.negative{color:#bc5263}
+    .benchmark-spark{position:relative;flex:1;min-width:0;height:8px}
+    .benchmark-zero{position:absolute;left:50%;top:-16px;bottom:-16px;width:1px;background:#dedee2}
+    .benchmark-change{position:absolute;top:0;height:8px;background:currentColor;border-radius:4px}
+    .benchmark-delta-value{display:block;flex:0 0 84px;text-align:right;font-size:26px;font-weight:500}
+    .nav{position:fixed;right:24px;bottom:18px;display:flex;align-items:center;gap:8px;z-index:20;background:rgba(255,255,255,.88);backdrop-filter:blur(16px);padding:8px 10px;border-radius:999px;box-shadow:0 8px 25px rgba(0,0,0,.11)}.nav button{border:0;background:transparent;color:var(--ink);width:34px;height:34px;border-radius:50%;cursor:pointer;font-size:25px;line-height:1}.nav button:hover{background:var(--surface)}.dots{display:flex;gap:5px;padding:0 4px}.dot{width:7px;height:7px;border-radius:50%;background:var(--line);border:0;padding:0;cursor:pointer}.dot.active{background:var(--blue);width:20px;border-radius:999px}.hint{position:fixed;left:24px;bottom:22px;z-index:20;color:var(--muted);font-size:12px;background:rgba(255,255,255,.72);padding:8px 12px;border-radius:999px}
+    @media(max-width:900px){.two-col,.kotokod,.platform,.invest,.finish-grid,.ai-layout{grid-template-columns:1fr}.slide-inner{overflow-y:auto}.cover .cover-copy{left:8%;top:15%;max-width:78%}.cover .mascot{right:9%;bottom:5%;width:38%}.lane{grid-template-columns:1fr}.lane .lane-body{grid-template-columns:1fr}.process{grid-template-columns:repeat(2,1fr)}.board{grid-template-columns:repeat(2,1fr)}.levels{grid-template-columns:1fr}.ai-art,.kotokod-art,.invest-art,.finish-art{height:340px}.platform{align-content:center}.shot-wrap{order:-1}.platform-copy{max-width:none}.months{margin-left:0}.t-row{grid-template-columns:1fr}.t-label{padding:0 0 10px}.timeline{overflow-x:auto}.t-grid{min-width:720px}.months{min-width:720px}.matrix{font-size:13px}.matrix th,.matrix td{padding:11px}.nav{right:12px;bottom:10px}.hint{display:none}}
+    .nav,.hint{display:none!important}
+    @media print{body{overflow:visible;background:white}.deck{display:block;height:auto;width:auto;overflow:visible}.slide{position:relative;inset:auto;opacity:1;visibility:visible;pointer-events:auto;width:1920px;height:1080px;break-after:page;page-break-after:always}.slide-inner{padding:48px 96px 96px;transform:none}.cover .side-block{left:83%}.nav,.hint{display:none!important}.under{left:96px;right:96px;bottom:106px}}
+    /* STRATEGY ARCHITECTURE STYLES START */
+    .strategy-architecture .slide-inner{flex-shrink:0}
+    .architecture-header{position:absolute;left:96px;top:72px;width:1728px}
+    .strategy-architecture h2{font-size:76px;line-height:1.02;white-space:nowrap}
+    .architecture-growth{position:absolute;left:96px;top:190px;width:1728px;height:620px;padding:24px;border-radius:32px;background:var(--lilac)}
+    .architecture-growth-heading{margin:0;font-size:34px;line-height:1.15;font-weight:500;letter-spacing:-.025em}
+    .architecture-stages{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:48px;margin-top:20px}
+    .architecture-stream{min-width:0;padding:10px;border:2px solid var(--platform);border-radius:20px;background:var(--paper)}
+    .architecture-stage-header{position:relative;height:90px;display:flex;align-items:center;justify-content:center;padding:0 12px;border-radius:12px}
+    .architecture-stream h4{width:100%;margin:0;font-size:25px;line-height:1.18;font-weight:600;letter-spacing:-.025em;text-align:center}
+    .architecture-transition{position:absolute;right:-52px;top:33px;width:32px;height:24px;overflow:visible;color:var(--blue-dark);z-index:1}
+    .architecture-stream ul{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:8px}
+    .architecture-project{min-height:60px;padding:10px 16px;display:flex;align-items:center;justify-content:center;border:1.5px solid rgba(28,28,28,.22);border-radius:12px;background:var(--paper);font-size:25px;line-height:1.24;letter-spacing:-.015em;text-align:center}
+    .architecture-project-provisional{background-color:#f7fbef;background-image:repeating-linear-gradient(135deg,transparent 0,transparent 9px,rgba(159,187,114,.32) 9px,rgba(159,187,114,.32) 11px)}
+    .architecture-retention-heading{margin:0;font-size:32px;line-height:1.2;font-weight:500;letter-spacing:-.025em;white-space:nowrap}
+    .architecture-retention{position:absolute;left:96px;top:832px;width:1728px;height:208px;padding:16px;border-radius:28px;background:var(--lemon)}
+    .architecture-retention-items{display:grid;grid-template-columns:2fr repeat(4,minmax(0,1fr));gap:16px;height:124px;margin-top:12px}
+    .architecture-retention-item{height:100%;min-width:0;padding:10px 14px;display:flex;flex-direction:column;justify-content:center;border:1.5px solid rgba(28,28,28,.22);border-radius:12px;background:var(--paper);font-size:24px;line-height:1.22;letter-spacing:-.02em;text-align:center}
+    .architecture-retention-item strong{font-weight:600}
+    .architecture-retention-item p{margin-top:8px;font-size:24px;line-height:1.22;color:var(--body)}
+    /* STRATEGY ARCHITECTURE STYLES END */
+    /* SALES TRAINING STYLES START */
+    .sales-training .slide-inner{flex-shrink:0}
+    .sales-training-header{position:absolute;left:96px;top:72px;width:1728px}
+    .sales-training h2{font-size:68px;line-height:1.04;white-space:nowrap}
+    .sales-training-badge{display:inline-flex;align-items:center;margin-top:30px;padding:10px 22px;border-radius:999px;background:var(--sky);color:var(--blue-dark);font-size:24px;line-height:1.2;font-weight:600;letter-spacing:-.02em}
+    .sales-training-layout{position:absolute;left:96px;top:258px;width:1728px;display:grid;grid-template-columns:1000px 680px;gap:48px;align-items:start}
+    .sales-training-copy{font-size:30px;line-height:1.25;letter-spacing:-.02em}
+    .sales-training-current{color:var(--body)}
+    .sales-training-nowrap{white-space:nowrap}
+    .sales-training-goal{margin-top:20px;padding:24px;border-radius:28px;background:var(--lilac)}
+    .sales-training-goal strong{font-weight:600}
+    .sales-training-goal .sales-training-target{color:var(--blue-dark);white-space:nowrap}
+    .sales-training-steps{margin-top:24px}
+    .sales-training-steps h3{font-size:32px;line-height:1.15;font-weight:500}
+    .sales-training-steps>ol{margin:18px 0 0;padding:0;list-style:none;display:grid;gap:18px;counter-reset:sales-training-step}
+    .sales-training-steps>ol>li{display:grid;grid-template-columns:36px minmax(0,1fr);gap:16px;counter-increment:sales-training-step}
+    .sales-training-steps>ol>li:before{content:counter(sales-training-step);font-weight:600;color:var(--blue-dark)}
+    .sales-training-artifacts{margin:12px 0 0;padding:0;list-style:none;display:grid;gap:8px;font-size:28px;line-height:1.25;color:var(--body)}
+    .sales-training-artifacts li{position:relative;padding-left:22px}
+    .sales-training-artifacts li:before{content:"•";position:absolute;left:0;color:var(--blue)}
+    .sales-training-media{display:grid;gap:28px}
+    .sales-training-media-frame{margin:0;width:680px;aspect-ratio:1906/936;border:1px solid var(--line);border-radius:24px;overflow:hidden;background:var(--paper)}
+    .sales-training-media-frame img{display:block;width:100%;height:100%;object-fit:contain}
+    .sales-training-media-pending{border:1.5px dashed var(--platform);background:#faf7fd}
+    /* SALES TRAINING STYLES END */
+    /* CJM DEVELOPMENT STYLES START */
+    .cjm-growth .slide-inner{flex-shrink:0}
+    .cjm-growth-header{position:absolute;left:96px;top:72px;width:1728px}
+    .cjm-growth h2{font-size:76px;line-height:1.02;white-space:nowrap}
+    .cjm-growth-badge{display:inline-flex;align-items:center;margin-top:30px;padding:10px 22px;border-radius:999px;background:var(--sky);color:var(--blue-dark);font-size:24px;line-height:1.2;font-weight:600;letter-spacing:-.02em}
+    .cjm-growth-context{position:absolute;left:96px;top:278px;width:1728px}
+    .cjm-growth-current{font-size:34px;line-height:1.25;letter-spacing:-.02em;color:var(--body)}
+    .cjm-growth-goal{margin-top:22px;padding:28px 32px;border-radius:28px;background:var(--lilac)}
+    .cjm-growth-goal p{font-size:40px;line-height:1.2;font-weight:500;letter-spacing:-.025em}
+    .cjm-growth-goal strong{font-weight:600;color:var(--blue-dark)}
+    .cjm-growth-steps{position:absolute;left:96px;top:508px;width:1728px}
+    .cjm-growth-steps h3{font-size:34px;line-height:1.15;font-weight:500}
+    .cjm-growth-steps ol{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:48px;margin:28px 0 0;padding:0;list-style:none;counter-reset:cjm-growth-step}
+    .cjm-growth-steps li{position:relative;min-width:0;counter-increment:cjm-growth-step}
+    .cjm-growth-steps li:before{content:counter(cjm-growth-step);display:block;margin-bottom:24px;font-size:52px;line-height:1;font-weight:500;letter-spacing:-.045em;color:var(--blue-dark)}
+    .cjm-growth-steps li+li:after{content:"";position:absolute;left:-25px;top:0;bottom:0;width:1px;background:var(--line)}
+    .cjm-growth-steps p{font-size:34px;line-height:1.28;letter-spacing:-.02em}
+    .cjm-growth-steps strong{font-weight:600}
+    /* CJM DEVELOPMENT STYLES END */
+    /* TEACHER SOCIAL DEVELOPMENT STYLES START */
+    .teacher-social .slide-inner{flex-shrink:0}
+    .teacher-social-header{position:absolute;left:96px;top:72px;width:1728px}
+    .teacher-social h2{font-size:76px;line-height:1.02;white-space:nowrap}
+    .teacher-social-context{position:absolute;left:96px;top:188px;width:1728px}
+    .teacher-social-platforms{font-size:32px;line-height:1.25;letter-spacing:-.02em;color:var(--body)}
+    .teacher-social-platforms strong{font-weight:600;color:var(--blue-dark)}
+    .teacher-social-goal{margin-top:28px;padding:28px 32px;border-radius:28px;background:var(--lilac)}
+    .teacher-social-goal p{font-size:40px;line-height:1.2;font-weight:500;letter-spacing:-.025em}
+    .teacher-social-goal strong{font-weight:600;color:var(--blue-dark)}
+    .teacher-social-steps{position:absolute;left:96px;top:508px;width:1728px}
+    .teacher-social-steps h3{font-size:34px;line-height:1.15;font-weight:500}
+    .teacher-social-steps ol{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:48px;margin:28px 0 0;padding:0;list-style:none;counter-reset:teacher-social-step}
+    .teacher-social-steps li{position:relative;min-width:0;counter-increment:teacher-social-step}
+    .teacher-social-steps li:before{content:counter(teacher-social-step);display:block;margin-bottom:24px;font-size:52px;line-height:1;font-weight:500;letter-spacing:-.045em;color:var(--blue-dark)}
+    .teacher-social-steps li+li:after{content:"";position:absolute;left:-25px;top:0;bottom:0;width:1px;background:var(--line)}
+    .teacher-social-steps p{font-size:34px;line-height:1.28;letter-spacing:-.02em}
+    .teacher-social-steps strong{font-weight:600}
+    .teacher-social-steps li:nth-child(2) strong{color:var(--blue-dark)}
+    /* TEACHER SOCIAL DEVELOPMENT STYLES END */
+    /* FIPI TRIALS GROWTH STYLES START */
+    .fipi-growth .slide-inner{flex-shrink:0}
+    .fipi-growth-header{position:absolute;left:96px;top:72px;width:1728px}
+    .fipi-growth h2{font-size:76px;line-height:1.02;white-space:nowrap}
+    .fipi-growth-goal{position:absolute;left:96px;top:202px;width:1120px;height:216px;padding:28px 32px;display:flex;align-items:center;border-radius:28px;background:var(--lilac)}
+    .fipi-growth-goal p{font-size:36px;line-height:1.25;font-weight:500;letter-spacing:-.025em}
+    .fipi-growth-goal strong{font-weight:600;color:var(--blue-dark)}
+    .fipi-growth-metric{position:absolute;left:1280px;top:202px;width:544px;height:216px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+    .fipi-growth-value{font-size:112px;line-height:1;font-weight:500;letter-spacing:-.055em;color:var(--blue-dark);white-space:nowrap}
+    .fipi-growth-caption{margin-top:12px;font-size:30px;line-height:1.25;letter-spacing:-.02em;color:var(--body)}
+    .fipi-growth-channels{position:absolute;left:96px;top:480px;width:1728px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:64px;align-items:stretch}
+    .fipi-growth-channel{position:relative;min-width:0}
+    .fipi-growth-channel+.fipi-growth-channel:before{content:"";position:absolute;left:-33px;top:0;bottom:0;width:1px;background:var(--line)}
+    .fipi-growth-lead{font-size:34px;line-height:1.28;letter-spacing:-.02em}
+    .fipi-growth-lead strong{font-weight:600}
+    .fipi-growth-channel ul{margin:28px 0 0;padding:0;list-style:none;display:grid;gap:18px}
+    .fipi-growth-channel li{position:relative;padding-left:26px;font-size:32px;line-height:1.3;letter-spacing:-.02em;color:var(--body)}
+    .fipi-growth-channel li:before{content:"•";position:absolute;left:0;color:var(--blue)}
+    /* FIPI TRIALS GROWTH STYLES END */
+    /* AI LAB GROWTH STYLES START */
+    .ai-lab-growth .slide-inner{flex-shrink:0}
+    .ai-lab-header{position:absolute;left:96px;top:72px;width:1728px;display:flex;align-items:center;justify-content:space-between}
+    .ai-lab-growth h2{font-size:76px;line-height:1.02;white-space:nowrap}
+    .ai-lab-header h2 span{color:var(--blue-dark)}
+    .ai-lab-step-label{display:inline-flex;align-items:center;justify-content:center;padding:14px 22px;border-radius:16px;background:#eef6ff;color:var(--blue-dark);font-size:32px;line-height:1.1;font-weight:500;letter-spacing:-.02em;white-space:nowrap}
+    .ai-lab-lead{position:absolute;left:96px;top:192px;width:1728px;padding:24px 32px;border-radius:28px;background:var(--lilac)}
+    .ai-lab-lead p{font-size:36px;line-height:1.2;font-weight:500;letter-spacing:-.025em}
+    .ai-lab-lead strong{font-weight:600;color:var(--blue-dark)}
+    .ai-lab-primary-layout{position:absolute;left:96px;top:326px;width:1728px;display:grid;grid-template-columns:1200px 480px;gap:48px}
+    .ai-lab-primary-panel{height:684px;min-width:0;padding:36px;border:1.5px solid transparent;border-radius:28px;background:var(--paper)}
+    .ai-lab-body-step-label{margin:0 0 24px;font-size:32px;line-height:1.15;font-weight:500;letter-spacing:-.02em;color:var(--blue-dark)}
+    .ai-lab-bullet-list{display:grid;gap:28px;margin:0;padding:0;list-style:none}
+    .ai-lab-bullet-list li{position:relative;padding-left:32px;font-size:42px;line-height:1.22;font-weight:500;letter-spacing:-.02em}
+    .ai-lab-bullet-list li:before{content:"•";position:absolute;left:0;color:var(--blue-dark)}
+    .ai-lab-bullet-list strong{font-weight:600;color:var(--blue-dark)}
+    .ai-lab-demo-stack{min-width:0;display:grid;grid-template-rows:repeat(3,212px);gap:24px}
+    .ai-lab-demo-slot{height:212px;display:flex;align-items:center;justify-content:center;min-width:0}
+    .ai-lab-demo{position:relative;margin:0;max-width:100%;border:1px solid var(--line);border-radius:22px;overflow:hidden;background:var(--paper)}
+    .ai-lab-demo video{display:block;width:100%;height:100%;object-fit:contain}
+    .ai-lab-demo figcaption{position:absolute;right:10px;bottom:10px;max-width:calc(100% - 20px);padding:8px 10px;border:1px solid rgba(28,28,28,.14);border-radius:8px;background:var(--paper);color:var(--ink);font-size:20px;line-height:1.18;font-weight:500;letter-spacing:-.02em;z-index:1}
+    .ai-lab-followup-layout{position:absolute;left:96px;top:326px;width:1728px;display:grid;grid-template-columns:1024px 656px;gap:48px}
+    .ai-lab-growth-step-2 .ai-lab-followup-layout{min-height:600px;align-items:center}
+    .ai-lab-bullet-copy{min-width:0}
+    .ai-lab-followup-cards{display:grid;gap:24px;margin:0;padding:0;list-style:none}
+    .ai-lab-followup-card{display:flex;align-items:center;min-height:184px;padding:28px 32px;border-radius:28px;background:var(--lilac)}
+    .ai-lab-followup-card:nth-child(2){background:var(--lemon)}
+    .ai-lab-followup-card:nth-child(3){background:var(--sky)}
+    .ai-lab-followup-card p{font-size:38px;line-height:1.2;font-weight:500;letter-spacing:-.02em}
+    .ai-lab-followup-card strong{font-weight:600;color:var(--blue-dark)}
+    .ai-lab-followup-photo{align-self:center;min-width:0;width:656px;margin:0;border:1px solid var(--line);border-radius:28px;overflow:hidden;background:var(--paper)}
+    .ai-lab-followup-photo img{display:block;width:100%;height:auto}
+    .ai-lab-growth-step-3 .ai-lab-followup-card{min-height:344px;padding:36px}
+    .ai-lab-growth-step-3 .ai-lab-followup-card p{font-size:44px;line-height:1.22}
+    .ai-lab-growth-step-3 .ai-lab-followup-layout{min-height:600px;align-items:center}
+    .ai-lab-civilization-figure{align-self:center;min-width:0;width:656px;margin:0}
+    .ai-lab-civilization-frame{border:1px solid var(--line);border-radius:28px;overflow:hidden;background:var(--paper)}
+    .ai-lab-civilization-frame img{display:block;width:100%;height:auto}
+    .ai-lab-civilization-figure figcaption{margin-top:14px;font-size:26px;line-height:1.2;font-weight:500;letter-spacing:-.02em;text-align:center;color:var(--ink)}
+    /* AI LAB GROWTH STYLES END */
+    /* AI TUTOR GROWTH STYLES START */
+    .ai-tutor-growth .slide-inner{flex-shrink:0}
+    .ai-tutor-header{position:absolute;left:96px;top:72px;width:1728px}
+    .ai-tutor-growth h2{font-size:76px;line-height:1.02;white-space:nowrap}
+    .ai-tutor-header h2 span{color:var(--blue-dark)}
+    .ai-tutor-goal{position:absolute;left:96px;top:192px;width:1728px;padding:24px 32px;border-radius:28px;background:var(--lilac)}
+    .ai-tutor-goal p{font-size:34px;line-height:1.25;font-weight:500;letter-spacing:-.025em}
+    .ai-tutor-goal strong{font-weight:600;color:var(--blue-dark)}
+    .ai-tutor-layout{position:absolute;left:96px;top:370px;width:1728px;display:grid;grid-template-columns:1024px 656px;gap:48px;align-items:center}
+    .ai-tutor-scenarios{min-width:0}
+    .ai-tutor-scenarios h3{font-size:34px;line-height:1.15;font-weight:500}
+    .ai-tutor-scenarios ol{display:grid;gap:26px;margin:24px 0 0;padding:0;list-style:none;counter-reset:ai-tutor-scenario}
+    .ai-tutor-scenarios li{display:grid;grid-template-columns:36px minmax(0,1fr);gap:16px;counter-increment:ai-tutor-scenario}
+    .ai-tutor-scenarios li:before{content:counter(ai-tutor-scenario);font-size:40px;line-height:1;font-weight:500;color:var(--blue-dark)}
+    .ai-tutor-scenarios p{font-size:30px;line-height:1.3;letter-spacing:-.02em;overflow-wrap:break-word}
+    .ai-tutor-scenarios strong{font-weight:600}
+    .ai-tutor-media{width:656px;height:322px;border:1.5px dashed var(--platform);border-radius:24px;background:#faf7fd}
+    .ai-tutor-funnel{position:absolute;left:96px;top:912px;width:1728px;padding:24px 32px;border-radius:28px;background:#eef6ff}
+    .ai-tutor-funnel p{font-size:32px;line-height:1.25;font-weight:500;letter-spacing:-.02em}
+    .ai-tutor-funnel strong{font-weight:600;color:var(--blue-dark)}
+    /* AI TUTOR GROWTH STYLES END */
+    /* OGE BOARD GAME STYLES START */
+    .oge-board-game .slide-inner{flex-shrink:0}
+    .oge-board-game-header{position:absolute;left:96px;top:72px;width:1728px}
+    .oge-board-game h2{font-size:76px;line-height:1.02;white-space:nowrap}
+    .oge-board-game-status{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:1440px;padding:40px 56px;border-radius:28px;background:var(--lilac);text-align:center}
+    .oge-board-game-status p{font-size:44px;line-height:1.25;font-weight:500;letter-spacing:-.025em}
+    /* OGE BOARD GAME STYLES END */
+    /* STAR TEACHER RECRUITING STYLES START */
+    .star-teacher-recruiting .slide-inner{flex-shrink:0}
+    .star-teacher-header{position:absolute;left:96px;top:72px;width:1728px}
+    .star-teacher-recruiting h2{font-size:76px;line-height:1.02;white-space:nowrap}
+    .star-teacher-layout{position:absolute;left:96px;top:218px;width:1728px;display:grid;grid-template-columns:1184px 496px;gap:48px;align-items:start}
+    .star-teacher-copy{min-width:0}
+    .star-teacher-lead{padding:28px 32px;border-radius:28px;background:var(--lilac)}
+    .star-teacher-lead p{font-size:34px;line-height:1.25;font-weight:500;letter-spacing:-.025em}
+    .star-teacher-lead strong{font-weight:600;color:var(--blue-dark)}
+    .star-teacher-example{margin-top:24px;font-size:32px;line-height:1.28;letter-spacing:-.02em;color:var(--body)}
+    .star-teacher-example strong{font-weight:600;color:var(--ink)}
+    .star-teacher-steps{margin-top:28px}
+    .star-teacher-steps h3{font-size:34px;line-height:1.15;font-weight:500}
+    .star-teacher-steps ol{display:grid;gap:26px;margin:24px 0 0;padding:0;list-style:none;counter-reset:star-teacher-step}
+    .star-teacher-steps li{display:grid;grid-template-columns:36px minmax(0,1fr);gap:16px;counter-increment:star-teacher-step}
+    .star-teacher-steps li:before{content:counter(star-teacher-step);font-size:40px;line-height:1;font-weight:500;color:var(--blue-dark)}
+    .star-teacher-steps p{font-size:32px;line-height:1.3;letter-spacing:-.02em}
+    .star-teacher-steps strong{font-weight:600;color:var(--blue-dark)}
+    .star-teacher-media{justify-self:center;margin:0;width:432px;height:768px;border:1px solid var(--line);border-radius:24px;overflow:hidden;background:var(--surface)}
+    .star-teacher-media video{display:block;width:100%;height:100%;object-fit:contain}
+    /* STAR TEACHER RECRUITING STYLES END */
+    /* COMMUNITY LONG REVENUE STYLES START */
+    .community-revenue .slide-inner{flex-shrink:0}
+    .community-revenue-header{position:absolute;left:96px;top:72px;width:1728px}
+    .community-revenue h2{font-size:76px;line-height:1.02;white-space:nowrap}
+    .community-opportunities{position:absolute;left:96px;top:210px;width:1728px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:48px}
+    .community-opportunity{height:336px;min-width:0;border:1.5px solid #c5d7ab;border-radius:28px;overflow:hidden;background:var(--paper)}
+    .community-opportunity-header{height:88px;padding:24px 28px;display:flex;align-items:center;justify-content:center;background:var(--sage)}
+    .community-opportunity-provisional .community-opportunity-header{background-color:#f7fbef;background-image:repeating-linear-gradient(135deg,transparent 0,transparent 9px,rgba(159,187,114,.32) 9px,rgba(159,187,114,.32) 11px)}
+    .community-opportunity h3{margin:0;font-size:34px;line-height:1.15;font-weight:500;letter-spacing:-.025em;text-align:center}
+    .community-opportunity ul{display:grid;gap:16px;margin:0;padding:24px 28px;list-style:none}
+    .community-opportunity li{position:relative;padding-left:26px;font-size:30px;line-height:1.28;letter-spacing:-.02em;color:var(--body)}
+    .community-opportunity li:before{content:"•";position:absolute;left:0;color:var(--blue)}
+    .community-merge{position:absolute;left:96px;top:546px;width:1728px;height:38px;overflow:visible;color:var(--blue-dark)}
+    .community-landing{position:absolute;left:96px;top:584px;width:1728px;height:184px;padding:24px 28px;border-radius:28px;background:var(--lilac)}
+    .community-landing h3{font-size:34px;line-height:1.15;font-weight:500}
+    .community-landing-description{margin-top:10px;font-size:30px;line-height:1.25;letter-spacing:-.02em}
+    .community-landing-hypothesis{margin-top:8px;font-size:28px;line-height:1.25;letter-spacing:-.02em;color:var(--body)}
+    .community-landing-hypothesis strong{font-weight:600}
+    .community-journey{position:absolute;left:96px;top:804px;width:1728px;height:232px;padding:16px;border-radius:28px;background:var(--lemon)}
+    .community-journey ol{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:48px;margin:0;padding:0;list-style:none}
+    .community-stage{position:relative;min-width:0;height:200px;padding:18px 20px;border:1.5px solid rgba(28,28,28,.18);border-radius:18px;background:var(--paper)}
+    .community-stage:last-child{border-color:var(--blue-dark);background:#eef6ff}
+    .community-stage-number{display:grid;place-items:center;width:32px;height:32px;margin-bottom:8px;border-radius:50%;background:var(--blue-dark);color:var(--paper);font-size:22px;line-height:1;font-weight:600}
+    .community-stage h4{margin:0;font-size:30px;line-height:1.2;font-weight:500;letter-spacing:-.025em}
+    .community-stage:last-child h4{color:var(--blue-dark)}
+    .community-stage p{margin-top:10px;font-size:26px;line-height:1.25;letter-spacing:-.02em;color:var(--body)}
+    .community-arrow{position:absolute;right:-44px;top:84px;width:40px;height:32px;overflow:visible;color:var(--blue-dark);z-index:1}
+    /* COMMUNITY LONG REVENUE STYLES END */
+    /* RETENTION STREAMS CALENDAR STYLES START */
+    .retention-streams .slide-inner{flex-shrink:0}
+    .retention-header{position:absolute;left:96px;top:72px;width:1728px}
+    .retention-streams h2{font-size:76px;line-height:1.02;white-space:nowrap}
+    .retention-calendar{position:absolute;left:96px;top:198px;width:1728px}
+    .retention-months{height:32px;margin:0 16px 12px 460px;display:grid;grid-template-columns:repeat(9,minmax(0,1fr));gap:8px;align-items:center}
+    .retention-month{font-size:22px;line-height:1.2;font-weight:500;letter-spacing:-.02em;color:var(--body);text-align:center}
+    .retention-group{display:grid;grid-template-columns:200px minmax(0,1fr);gap:16px;padding:16px;border-radius:24px}
+    .retention-group+.retention-group{margin-top:16px}
+    .retention-group-tutors{background:#f0f7ff}
+    .retention-group-master{background:#f6efff}
+    .retention-group-title{align-self:start;display:flex;align-items:center;min-height:48px;font-size:26px;line-height:1.15;font-weight:600;letter-spacing:-.025em}
+    .retention-group-tutors .retention-group-title{color:var(--blue-dark)}
+    .retention-group-master .retention-group-title{color:#685094}
+    .retention-rows{min-width:0;display:grid;gap:8px}
+    .retention-row{display:grid;grid-template-columns:212px minmax(0,1fr);gap:16px;height:48px;align-items:center}
+    .retention-row-label{font-size:22px;line-height:1.08;font-weight:500;letter-spacing:-.02em}
+    .retention-track{height:48px;display:grid;grid-template-columns:repeat(9,minmax(0,1fr));gap:8px;align-items:center}
+    .retention-bar{display:flex;align-items:center;justify-content:center;height:44px;min-width:0;padding:0 8px;border-radius:12px;text-align:center;font-size:20px;line-height:1.1;font-weight:500;letter-spacing:-.02em;white-space:nowrap}
+    .retention-bar-sky{background:var(--sky)}
+    .retention-bar-lilac{background:var(--lilac)}
+    .retention-bar-pink{background:var(--pink)}
+    .retention-bar-sage{background:var(--sage)}
+    .retention-bar-lemon{background:var(--lemon)}
+    .retention-bar-coral{background:#ffd2d8}
+    .retention-bar-blue{background:var(--blue-dark);color:var(--paper)}
+    .retention-bar-dark{background:var(--charcoal);color:var(--paper)}
+    .retention-notes{position:absolute;left:96px;top:798px;width:1728px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+    .retention-note{position:relative;min-width:0}
+    .retention-note+.retention-note:before{content:"";position:absolute;left:-12px;top:0;bottom:0;width:1px;background:var(--line)}
+    .retention-note h3{font-size:30px;line-height:1.15;font-weight:600;letter-spacing:-.025em}
+    .retention-note p{margin-top:12px;font-size:28px;line-height:1.25;letter-spacing:-.02em;color:var(--body)}
+    /* RETENTION STREAMS CALENDAR STYLES END */
+  </style>
+</head>
+<body>
+  <main class="deck" id="deck" tabindex="-1" aria-label="Продуктовая стратегия 99 баллов 2026/27">
+    <section class="slide cover" data-title="Обложка">
+      <div class="side-block" aria-hidden="true"></div>
+      <div class="slide-inner">
+        <div class="cover-copy">
+          <div class="eyebrow">Продуктовая стратегия</div>
+          <h1>99 баллов<br><span class="blue">2026/27</span></h1>
+          <div class="accent-rule"></div>
+        </div>
+        <img class="mascot" src="assets/mascot-lilac.png" alt="Объёмная иллюстрация персонажа 99 баллов">
+      </div>
+    </section>
+
+    <!-- MARKET CONTEXT SLIDES START -->
+    <section class="slide white imported-slide" data-title="ОГЭ/ЕГЭ и общеобразовательные курсы - ключевые драйверы рынка">
+      <iframe src="assets/slides/market-slide.html" title="ОГЭ/ЕГЭ и общеобразовательные курсы - ключевые драйверы рынка" allow="autoplay" loading="eager"></iframe>
+    </section>
+
+    <section class="slide white imported-slide" data-title="Ключевой драйвер ЕГЭ и ОГЭ: органический трафик преподавателей">
+      <iframe src="assets/slides/market-driver-slide.html" title="Ключевой драйвер ЕГЭ и ОГЭ: органический трафик преподавателей" allow="autoplay" loading="eager"></iframe>
+    </section>
+
+    <section class="slide white imported-slide" data-title="AI как новый драйвер роста выручки">
+      <iframe src="assets/slides/neofamily-ai-slide.html" title="AI как новый драйвер роста выручки" allow="autoplay" loading="eager"></iframe>
+    </section>
+    <!-- MARKET CONTEXT SLIDES END -->
+
+    <!-- BRAND DIVIDER START -->
+    <section class="slide cover brand-divider" data-title="99 баллов">
+      <div class="side-block" aria-hidden="true"></div>
+      <div class="slide-inner">
+        <div class="cover-copy">
+          <h2>99 баллов</h2>
+          <div class="accent-rule" aria-hidden="true"></div>
+        </div>
+        <img class="mascot" src="assets/mascot-lilac.png" alt="Объёмная иллюстрация персонажа 99 баллов">
+      </div>
+    </section>
+    <!-- BRAND DIVIDER END -->
+
+    <section class="slide white" data-title="Два типа продуктов">
+      <div class="slide-inner">
+        <div class="split-title"><h2>Два типа продуктов</h2></div>
+        <div class="two-col" style="margin-top:clamp(38px,5vw,92px);height:auto;align-items:stretch">
+          <article class="soft-card lilac"><span class="tag">Мастер-группа</span><h3>Один преподаватель<br>на большой поток</h3><ul><li>Повышенная маржинальность</li><li>Сложнее работать с переходами между месяцами</li></ul><div class="tariffs"><span class="pill">Стандарт</span><span class="pill">Про</span><span class="pill">Про Макс</span></div></article>
+          <article class="soft-card pink right"><span class="tag">Синхронные репетиторы</span><h3>Один преподаватель<br>на ограниченное число учеников</h3><ul><li>Индивидуальные занятия и мини-группы</li><li>Ниже маржинальность</li></ul><div class="tariffs"><span class="pill">Мини-группа</span><span class="pill">Индивидуально</span><span class="pill">Дуэт по запросу</span></div></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- COURSE DISTRIBUTION START -->
+    <section class="slide white course-distribution" data-title="Распределение аудитории купивших мастер-группу">
+      <div class="slide-inner">
+        <header class="distribution-header">
+          <h2>Распределение аудитории купивших мастер-группу</h2>
+        </header>
+        <div class="distribution-formats" role="list">
+          <div class="distribution-format" role="listitem" style="--series-color:var(--blue)"><h3><span class="distribution-key" aria-hidden="true"></span>ЕГЭ</h3><div class="distribution-percent">63,3<span>%</span></div></div>
+          <div class="distribution-format" role="listitem" style="--series-color:var(--lilac)"><h3><span class="distribution-key" aria-hidden="true"></span>ОГЭ</h3><div class="distribution-percent">21,2<span>%</span></div></div>
+          <div class="distribution-format" role="listitem" style="--series-color:var(--pink)"><h3><span class="distribution-key" aria-hidden="true"></span>10 класс</h3><div class="distribution-percent">14,8<span>%</span></div></div>
+          <div class="distribution-format" role="listitem" style="--series-color:var(--sage)"><h3><span class="distribution-key" aria-hidden="true"></span>8 класс</h3><div class="distribution-percent">1,0<span>%</span></div></div>
+        </div>
+        <div class="distribution-stack" role="img" aria-label="Распределение курсов: ЕГЭ 63,3%, ОГЭ 21,2%, 10 класс 14,8%, 8 класс 1,0%, предварительные данные"><span style="flex:1090;background:var(--blue)" title="ЕГЭ: 1 090 курсов"></span><span style="flex:365;background:var(--lilac)" title="ОГЭ: 365 курсов"></span><span style="flex:255;background:var(--pink)" title="10 класс: 255 курсов"></span><span style="flex:17;background:var(--sage)" title="8 класс: 17 курсов"></span></div>
+        <div class="distribution-counts">
+          <div><div class="distribution-course-count"><strong>1 090</strong> курсов</div><div class="distribution-student-count">422 ученика</div><div class="distribution-multi">2,57 предмета на ученика</div></div>
+          <div><div class="distribution-course-count"><strong>365</strong> курсов</div><div class="distribution-student-count">117 учеников</div><div class="distribution-multi">3,09 предмета на ученика</div></div>
+          <div><div class="distribution-course-count"><strong>255</strong> курсов</div><div class="distribution-student-count">94 учеников</div><div class="distribution-multi">2,69 предмета на ученика</div></div>
+          <div><div class="distribution-course-count"><strong>17</strong> курсов</div><div class="distribution-student-count">5 учеников</div><div class="distribution-multi">3,4 предмета на ученика</div></div>
+        </div>
+        <div class="distribution-subject-heading"><h3>Популярные предметы</h3><p>Доля курсов внутри направления</p></div>
+        <div class="distribution-rankings"><section class="distribution-rating-column" aria-labelledby="ranking-ege" style="--rating-color:var(--blue)">
+            <h4 id="ranking-ege">ЕГЭ</h4>
+            <ol class="distribution-rating-list">
+              <li class="distribution-rating-row leading" title="Русский язык: 253 из 1090 курсов">
+                <div class="distribution-rating-label"><span class="distribution-rating-name">Русский язык</span><span class="distribution-rating-share">23,2%</span></div>
+                <div class="distribution-rating-track" aria-hidden="true"><span style="width:77.37003058103976%"></span></div>
+              </li>
+              <li class="distribution-rating-row" title="Математика база: 182 из 1090 курсов">
+                <div class="distribution-rating-label"><span class="distribution-rating-name">Математика база</span><span class="distribution-rating-share">16,7%</span></div>
+                <div class="distribution-rating-track" aria-hidden="true"><span style="width:55.65749235474006%"></span></div>
+              </li>
+              <li class="distribution-rating-row" title="Обществознание: 110 из 1090 курсов">
+                <div class="distribution-rating-label"><span class="distribution-rating-name">Обществознание</span><span class="distribution-rating-share">10,1%</span></div>
+                <div class="distribution-rating-track" aria-hidden="true"><span style="width:33.63914373088685%"></span></div>
+              </li>
+              <li class="distribution-rating-row" title="Физика: 93 из 1090 курсов">
+                <div class="distribution-rating-label"><span class="distribution-rating-name">Физика</span><span class="distribution-rating-share">8,5%</span></div>
+                <div class="distribution-rating-track" aria-hidden="true"><span style="width:28.440366972477065%"></span></div>
+              </li>
+              <li class="distribution-rating-row" title="Математика профиль: 89 из 1090 курсов">
+                <div class="distribution-rating-label"><span class="distribution-rating-name">Математика профиль</span><span class="distribution-rating-share">8,2%</span></div>
+                <div class="distribution-rating-track" aria-hidden="true"><span style="width:27.217125382262996%"></span></div>
+              </li>
+              <li class="distribution-rating-row" title="Биология: 86 из 1090 курсов">
+                <div class="distribution-rating-label"><span class="distribution-rating-name">Биология</span><span class="distribution-rating-share">7,9%</span></div>
+                <div class="distribution-rating-track" aria-hidden="true"><span style="width:26.299694189602445%"></span></div>
+              </li>
+              <li class="distribution-rating-row" title="Информатика: 85 из 1090 курсов">
+                <div class="distribution-rating-label"><span class="distribution-rating-name">Информатика</span><span class="distribution-rating-share">7,8%</span></div>
+                <div class="distribution-rating-track" aria-hidden="true"><span style="width:25.993883792048933%"></span></div>
+              </li>
+              <li class="distribution-rating-row" title="Химия: 67 из 1090 курсов">
+                <div class="distribution-rating-label"><span class="distribution-rating-name">Химия</span><span class="distribution-rating-share">6,1%</span></div>
+                <div class="distribution-rating-track" aria-hidden="true"><span style="width:20.489296636085626%"></span></div>
+              </li>
+              <li class="distribution-rating-row" title="История: 48 из 1090 курсов">
+                <div class="distribution-rating-label"><span class="distribution-rating-name">История</span><span class="distribution-rating-share">4,4%</span></div>
+                <div class="distribution-rating-track" aria-hidden="true"><span style="width:14.678899082568808%"></span></div>
+              </li>
+              <li class="distribution-rating-row" title="Английский язык: 36 из 1090 курсов">
+                <div class="distribution-rating-label"><span class="distribution-rating-name">Английский язык</span><span class="distribution-rating-share">3,3%</span></div>
+                <div class="distribution-rating-track" aria-hidden="true"><span style="width:11.009174311926607%"></span></div>
+              </li>
+              <li class="distribution-rating-row" title="Литература: 36 из 1090 курсов">
+                <div class="distribution-rating-label"><span class="distribution-rating-name">Литература</span><span class="distribution-rating-share">3,3%</span></div>
+                <div class="distribution-rating-track" aria-hidden="true"><span style="width:11.009174311926607%"></span></div>
+              </li>
+              <li class="distribution-rating-row" title="География: 5 из 1090 курсов">
+                <div class="distribution-rating-label"><span class="distribution-rating-name">География</span><span class="distribution-rating-share">0,5%</span></div>
+                <div class="distribution-rating-track" aria-hidden="true"><span style="width:1.5290519877675843%"></span></div>
+              </li>
+            </ol>
+          </section>
+          <section class="distribution-rating-column" aria-labelledby="ranking-oge" style="--rating-color:#bda5e4">
+            <h4 id="ranking-oge">ОГЭ</h4>
+            <ol class="distribution-rating-list">
+              <li class="distribution-rating-row leading" title="Математика: 87 из 365 курсов">
+                <div class="distribution-rating-label"><span class="distribution-rating-name">Математика</span><span class="distribution-rating-share">23,8%</span></div>
+                <div class="distribution-rating-track" aria-hidden="true"><span style="width:79.45205479452055%"></span></div>
+              </li>
+              <li class="distribution-rating-row" title="Русский язык: 84 из 365 курсов">
+                <div class="distribution-rating-label"><span class="distribution-rating-name">Русский язык</span><span class="distribution-rating-share">23,0%</span></div>
+                <div class="distribution-rating-track" aria-hidden="true"><span style="width:76.71232876712328%"></span></div>
+              </li>
+              <li class="distribution-rating-row" title="Химия: 38 из 365 курсов">
+                <div class="distribution-rating-label"><span class="distribution-rating-name">Химия</span><span class="distribution-rating-share">10,4%</span></div>
+                <div class="distribution-rating-track" aria-hidden="true"><span style="width:34.70319634703197%"></span></div>
+              </li>
+              <li class="distribution-rating-row" title="Биология: 37 из 365 курсов">
+                <div class="distribution-rating-label"><span class="distribution-rating-name">Биология</span><span class="distribution-rating-share">10,1%</span></div>
+                <div class="distribution-rating-track" aria-hidden="true"><span style="width:33.789954337899545%"></span></div>
+              </li>
+              <li class="distribution-rating-row" title="Физика: 30 из 365 курсов">
+                <div class="distribution-rating-label"><span class="distribution-rating-name">Физика</span><span class="distribution-rating-share">8,2%</span></div>
+                <div class="distribution-rating-track" aria-hidden="true"><span style="width:27.397260273972602%"></span></div>
+              </li>
+              <li class="distribution-rating-row" title="Информатика: 29 из 365 курсов">
+                <div class="distribution-rating-label"><span class="distribution-rating-name">Информатика</span><span class="distribution-rating-share">7,9%</span></div>
+                <div class="distribution-rating-track" aria-hidden="true"><span style="width:26.484018264840188%"></span></div>
+              </li>
+              <li class="distribution-rating-row" title="Обществознание: 26 из 365 курсов">
+                <div class="distribution-rating-label"><span class="distribution-rating-name">Обществознание</span><span class="distribution-rating-share">7,1%</span></div>
+                <div class="distribution-rating-track" aria-hidden="true"><span style="width:23.744292237442924%"></span></div>
+              </li>
+              <li class="distribution-rating-row" title="История: 12 из 365 курсов">
+                <div class="distribution-rating-label"><span class="distribution-rating-name">История</span><span class="distribution-rating-share">3,3%</span></div>
+                <div class="distribution-rating-track" aria-hidden="true"><span style="width:10.95890410958904%"></span></div>
+              </li>
+              <li class="distribution-rating-row" title="География: 11 из 365 курсов">
+                <div class="distribution-rating-label"><span class="distribution-rating-name">География</span><span class="distribution-rating-share">3,0%</span></div>
+                <div class="distribution-rating-track" aria-hidden="true"><span style="width:10.045662100456623%"></span></div>
+              </li>
+              <li class="distribution-rating-row" title="Английский язык: 8 из 365 курсов">
+                <div class="distribution-rating-label"><span class="distribution-rating-name">Английский язык</span><span class="distribution-rating-share">2,2%</span></div>
+                <div class="distribution-rating-track" aria-hidden="true"><span style="width:7.30593607305936%"></span></div>
+              </li>
+              <li class="distribution-rating-row" title="Литература: 3 из 365 курсов">
+                <div class="distribution-rating-label"><span class="distribution-rating-name">Литература</span><span class="distribution-rating-share">0,8%</span></div>
+                <div class="distribution-rating-track" aria-hidden="true"><span style="width:2.73972602739726%"></span></div>
+              </li>
+            </ol>
+          </section>
+          <section class="distribution-rating-column" aria-labelledby="ranking-grade10" style="--rating-color:#e9a3af">
+            <h4 id="ranking-grade10">10 класс</h4>
+            <ol class="distribution-rating-list">
+              <li class="distribution-rating-row leading" title="Русский язык: 63 из 255 курсов">
+                <div class="distribution-rating-label"><span class="distribution-rating-name">Русский язык</span><span class="distribution-rating-share">24,7%</span></div>
+                <div class="distribution-rating-track" aria-hidden="true"><span style="width:82.3529411764706%"></span></div>
+              </li>
+              <li class="distribution-rating-row" title="Математика профиль: 46 из 255 курсов">
+                <div class="distribution-rating-label"><span class="distribution-rating-name">Математика профиль</span><span class="distribution-rating-share">18,0%</span></div>
+                <div class="distribution-rating-track" aria-hidden="true"><span style="width:60.130718954248366%"></span></div>
+              </li>
+              <li class="distribution-rating-row" title="Обществознание: 30 из 255 курсов">
+                <div class="distribution-rating-label"><span class="distribution-rating-name">Обществознание</span><span class="distribution-rating-share">11,8%</span></div>
+                <div class="distribution-rating-track" aria-hidden="true"><span style="width:39.21568627450981%"></span></div>
+              </li>
+              <li class="distribution-rating-row" title="Физика: 29 из 255 курсов">
+                <div class="distribution-rating-label"><span class="distribution-rating-name">Физика</span><span class="distribution-rating-share">11,4%</span></div>
+                <div class="distribution-rating-track" aria-hidden="true"><span style="width:37.90849673202615%"></span></div>
+              </li>
+              <li class="distribution-rating-row" title="Информатика: 26 из 255 курсов">
+                <div class="distribution-rating-label"><span class="distribution-rating-name">Информатика</span><span class="distribution-rating-share">10,2%</span></div>
+                <div class="distribution-rating-track" aria-hidden="true"><span style="width:33.986928104575156%"></span></div>
+              </li>
+              <li class="distribution-rating-row" title="Биология: 19 из 255 курсов">
+                <div class="distribution-rating-label"><span class="distribution-rating-name">Биология</span><span class="distribution-rating-share">7,5%</span></div>
+                <div class="distribution-rating-track" aria-hidden="true"><span style="width:24.836601307189543%"></span></div>
+              </li>
+              <li class="distribution-rating-row" title="История: 15 из 255 курсов">
+                <div class="distribution-rating-label"><span class="distribution-rating-name">История</span><span class="distribution-rating-share">5,9%</span></div>
+                <div class="distribution-rating-track" aria-hidden="true"><span style="width:19.607843137254903%"></span></div>
+              </li>
+              <li class="distribution-rating-row" title="Английский язык: 12 из 255 курсов">
+                <div class="distribution-rating-label"><span class="distribution-rating-name">Английский язык</span><span class="distribution-rating-share">4,7%</span></div>
+                <div class="distribution-rating-track" aria-hidden="true"><span style="width:15.686274509803921%"></span></div>
+              </li>
+              <li class="distribution-rating-row" title="Химия: 10 из 255 курсов">
+                <div class="distribution-rating-label"><span class="distribution-rating-name">Химия</span><span class="distribution-rating-share">3,9%</span></div>
+                <div class="distribution-rating-track" aria-hidden="true"><span style="width:13.071895424836603%"></span></div>
+              </li>
+              <li class="distribution-rating-row" title="Литература: 5 из 255 курсов">
+                <div class="distribution-rating-label"><span class="distribution-rating-name">Литература</span><span class="distribution-rating-share">2,0%</span></div>
+                <div class="distribution-rating-track" aria-hidden="true"><span style="width:6.535947712418301%"></span></div>
+              </li>
+            </ol>
+          </section>
+          <section class="distribution-rating-column" aria-labelledby="ranking-grade8" style="--rating-color:#a6bf7b">
+            <h4 id="ranking-grade8">8 класс</h4>
+            <ol class="distribution-rating-list">
+              <li class="distribution-rating-row leading" title="Математика: 5 из 17 курсов">
+                <div class="distribution-rating-label"><span class="distribution-rating-name">Математика</span><span class="distribution-rating-share">29,4%</span></div>
+                <div class="distribution-rating-track" aria-hidden="true"><span style="width:98.03921568627452%"></span></div>
+              </li>
+              <li class="distribution-rating-row" title="Русский язык: 3 из 17 курсов">
+                <div class="distribution-rating-label"><span class="distribution-rating-name">Русский язык</span><span class="distribution-rating-share">17,6%</span></div>
+                <div class="distribution-rating-track" aria-hidden="true"><span style="width:58.82352941176471%"></span></div>
+              </li>
+              <li class="distribution-rating-row" title="История: 2 из 17 курсов">
+                <div class="distribution-rating-label"><span class="distribution-rating-name">История</span><span class="distribution-rating-share">11,8%</span></div>
+                <div class="distribution-rating-track" aria-hidden="true"><span style="width:39.21568627450981%"></span></div>
+              </li>
+              <li class="distribution-rating-row" title="Химия: 2 из 17 курсов">
+                <div class="distribution-rating-label"><span class="distribution-rating-name">Химия</span><span class="distribution-rating-share">11,8%</span></div>
+                <div class="distribution-rating-track" aria-hidden="true"><span style="width:39.21568627450981%"></span></div>
+              </li>
+              <li class="distribution-rating-row" title="Английский язык: 2 из 17 курсов">
+                <div class="distribution-rating-label"><span class="distribution-rating-name">Английский язык</span><span class="distribution-rating-share">11,8%</span></div>
+                <div class="distribution-rating-track" aria-hidden="true"><span style="width:39.21568627450981%"></span></div>
+              </li>
+              <li class="distribution-rating-row" title="Физика: 1 из 17 курсов">
+                <div class="distribution-rating-label"><span class="distribution-rating-name">Физика</span><span class="distribution-rating-share">5,9%</span></div>
+                <div class="distribution-rating-track" aria-hidden="true"><span style="width:19.607843137254903%"></span></div>
+              </li>
+              <li class="distribution-rating-row" title="Биология: 1 из 17 курсов">
+                <div class="distribution-rating-label"><span class="distribution-rating-name">Биология</span><span class="distribution-rating-share">5,9%</span></div>
+                <div class="distribution-rating-track" aria-hidden="true"><span style="width:19.607843137254903%"></span></div>
+              </li>
+              <li class="distribution-rating-row" title="Информатика: 1 из 17 курсов">
+                <div class="distribution-rating-label"><span class="distribution-rating-name">Информатика</span><span class="distribution-rating-share">5,9%</span></div>
+                <div class="distribution-rating-track" aria-hidden="true"><span style="width:19.607843137254903%"></span></div>
+              </li>
+              <li class="distribution-rating-row" title="Обществознание: 0 из 17 курсов">
+                <div class="distribution-rating-label"><span class="distribution-rating-name">Обществознание</span><span class="distribution-rating-share">0,0%</span></div>
+                <div class="distribution-rating-track" aria-hidden="true"><span style="width:0%"></span></div>
+              </li>
+              <li class="distribution-rating-row" title="Литература: 0 из 17 курсов">
+                <div class="distribution-rating-label"><span class="distribution-rating-name">Литература</span><span class="distribution-rating-share">0,0%</span></div>
+                <div class="distribution-rating-track" aria-hidden="true"><span style="width:0%"></span></div>
+              </li>
+            </ol>
+          </section></div>
+      </div>
+    </section>
+    <!-- COURSE DISTRIBUTION END -->
+
+    <!-- RUSSIA COMPARISON START -->
+    <section class="slide white russia-comparison" data-title="Выбор предметов: 99 баллов и Россия">
+      <div class="slide-inner">
+        <header class="benchmark-header"><h2>Выбор предметов: 99 баллов и Россия</h2></header>
+        <div class="benchmark-exams">
+          <section class="benchmark-exam" aria-labelledby="benchmark-ege">
+            <h3 id="benchmark-ege">ЕГЭ</h3>
+            <table class="benchmark-table" aria-label="ЕГЭ: сравнение долей предметов 99 баллов и России">
+              <colgroup><col style="width:36%"><col style="width:15%"><col style="width:15%"><col style="width:34%"></colgroup>
+              <thead><tr><th scope="col">Предмет</th><th scope="col">Россия</th><th scope="col" class="benchmark-ours-label">99 баллов</th><th scope="col">Разница, п.п.</th></tr></thead>
+              <tbody><tr class="" title="Русский язык. Россия: 662 000 участников по предмету. 99 баллов: 253 купленных курсов.">
+                <th scope="row">Русский язык</th><td class="benchmark-country">29,6%</td><td class="benchmark-ours">23,2%</td>
+                <td><div class="benchmark-delta negative"><div class="benchmark-spark" aria-hidden="true"><span class="benchmark-zero"></span><span class="benchmark-change" style="left:17.85051466353599%;width:32.14948533646401%"></span></div><span class="benchmark-delta-value">−6,4</span></div></td>
+              </tr>
+              <tr class="benchmark-row-below" title="Математика профиль. Россия: 337 500 участников по предмету. 99 баллов: 89 купленных курсов.">
+                <th scope="row">Математика профиль</th><td class="benchmark-country">15,1%</td><td class="benchmark-ours">8,2%</td>
+                <td><div class="benchmark-delta negative"><div class="benchmark-spark" aria-hidden="true"><span class="benchmark-zero"></span><span class="benchmark-change" style="left:15.26824202700783%;width:34.73175797299217%"></span></div><span class="benchmark-delta-value">−6,9</span></div></td>
+              </tr>
+              <tr class="" title="Математика база. Россия: 319 000 участников по предмету. 99 баллов: 182 купленных курсов.">
+                <th scope="row">Математика база</th><td class="benchmark-country">14,3%</td><td class="benchmark-ours">16,7%</td>
+                <td><div class="benchmark-delta positive"><div class="benchmark-spark" aria-hidden="true"><span class="benchmark-zero"></span><span class="benchmark-change" style="left:50%;width:12.07045989863646%"></span></div><span class="benchmark-delta-value">+2,4</span></div></td>
+              </tr>
+              <tr class="" title="Обществознание. Россия: 248 500 участников по предмету. 99 баллов: 110 купленных курсов.">
+                <th scope="row">Обществознание</th><td class="benchmark-country">11,1%</td><td class="benchmark-ours">10,1%</td>
+                <td><div class="benchmark-delta negative"><div class="benchmark-spark" aria-hidden="true"><span class="benchmark-zero"></span><span class="benchmark-change" style="left:44.82604791476854%;width:5.173952085231459%"></span></div><span class="benchmark-delta-value">−1,0</span></div></td>
+              </tr>
+              <tr class="benchmark-row-above" title="Информатика. Россия: 125 500 участников по предмету. 99 баллов: 85 купленных курсов.">
+                <th scope="row">Информатика</th><td class="benchmark-country">5,6%</td><td class="benchmark-ours">7,8%</td>
+                <td><div class="benchmark-delta positive"><div class="benchmark-spark" aria-hidden="true"><span class="benchmark-zero"></span><span class="benchmark-change" style="left:50%;width:10.894649454528134%"></span></div><span class="benchmark-delta-value">+2,2</span></div></td>
+              </tr>
+              <tr class="benchmark-row-above" title="Биология. Россия: 120 000 участников по предмету. 99 баллов: 86 купленных курсов.">
+                <th scope="row">Биология</th><td class="benchmark-country">5,4%</td><td class="benchmark-ours">7,9%</td>
+                <td><div class="benchmark-delta positive"><div class="benchmark-spark" aria-hidden="true"><span class="benchmark-zero"></span><span class="benchmark-change" style="left:50%;width:12.584671579021744%"></span></div><span class="benchmark-delta-value">+2,5</span></div></td>
+              </tr>
+              <tr class="benchmark-row-above" title="Физика. Россия: 115 000 участников по предмету. 99 баллов: 93 купленных курсов.">
+                <th scope="row">Физика</th><td class="benchmark-country">5,1%</td><td class="benchmark-ours">8,5%</td>
+                <td><div class="benchmark-delta positive"><div class="benchmark-spark" aria-hidden="true"><span class="benchmark-zero"></span><span class="benchmark-change" style="left:50%;width:16.915050324391252%"></span></div><span class="benchmark-delta-value">+3,4</span></div></td>
+              </tr>
+              <tr class="" title="Химия. Россия: 92 400 участников по предмету. 99 баллов: 67 купленных курсов.">
+                <th scope="row">Химия</th><td class="benchmark-country">4,1%</td><td class="benchmark-ours">6,1%</td>
+                <td><div class="benchmark-delta positive"><div class="benchmark-spark" aria-hidden="true"><span class="benchmark-zero"></span><span class="benchmark-change" style="left:50%;width:10.047995280984354%"></span></div><span class="benchmark-delta-value">+2,0</span></div></td>
+              </tr>
+              <tr class="" title="История. Россия: 81 500 участников по предмету. 99 баллов: 48 купленных курсов.">
+                <th scope="row">История</th><td class="benchmark-country">3,6%</td><td class="benchmark-ours">4,4%</td>
+                <td><div class="benchmark-delta positive"><div class="benchmark-spark" aria-hidden="true"><span class="benchmark-zero"></span><span class="benchmark-change" style="left:50%;width:3.7726246156146526%"></span></div><span class="benchmark-delta-value">+0,8</span></div></td>
+              </tr>
+              <tr class="" title="Английский язык. Россия: 77 000 участников по предмету. 99 баллов: 36 купленных курсов.">
+                <th scope="row">Английский язык</th><td class="benchmark-country">3,4%</td><td class="benchmark-ours">3,3%</td>
+                <td><div class="benchmark-delta negative"><div class="benchmark-spark" aria-hidden="true"><span class="benchmark-zero"></span><span class="benchmark-change" style="left:49.275470073603174%;width:0.7245299263968286%"></span></div><span class="benchmark-delta-value">−0,1</span></div></td>
+              </tr>
+              <tr class="" title="Литература. Россия: 36 000 участников по предмету. 99 баллов: 36 купленных курсов.">
+                <th scope="row">Литература</th><td class="benchmark-country">1,6%</td><td class="benchmark-ours">3,3%</td>
+                <td><div class="benchmark-delta positive"><div class="benchmark-spark" aria-hidden="true"><span class="benchmark-zero"></span><span class="benchmark-change" style="left:50%;width:8.454300556275332%"></span></div><span class="benchmark-delta-value">+1,7</span></div></td>
+              </tr>
+              <tr class="" title="География. Россия: 19 000 участников по предмету. 99 баллов: 5 купленных курсов.">
+                <th scope="row">География</th><td class="benchmark-country">0,9%</td><td class="benchmark-ours">0,5%</td>
+                <td><div class="benchmark-delta negative"><div class="benchmark-spark" aria-hidden="true"><span class="benchmark-zero"></span><span class="benchmark-change" style="left:48.03997361163257%;width:1.9600263883674296%"></span></div><span class="benchmark-delta-value">−0,4</span></div></td>
+              </tr></tbody>
+            </table>
+          </section>
+          <section class="benchmark-exam" aria-labelledby="benchmark-oge">
+            <h3 id="benchmark-oge">ОГЭ</h3>
+            <table class="benchmark-table" aria-label="ОГЭ: сравнение долей предметов 99 баллов и России">
+              <colgroup><col style="width:36%"><col style="width:15%"><col style="width:15%"><col style="width:34%"></colgroup>
+              <thead><tr><th scope="col">Предмет</th><th scope="col">Россия</th><th scope="col" class="benchmark-ours-label">99 баллов</th><th scope="col">Разница, п.п.</th></tr></thead>
+              <tbody><tr class="" title="Математика. Россия: 1 699 000 участников по предмету. 99 баллов: 87 купленных курсов.">
+                <th scope="row">Математика</th><td class="benchmark-country">26,0%</td><td class="benchmark-ours">23,8%</td>
+                <td><div class="benchmark-delta negative"><div class="benchmark-spark" aria-hidden="true"><span class="benchmark-zero"></span><span class="benchmark-change" style="left:39.00646098430304%;width:10.99353901569696%"></span></div><span class="benchmark-delta-value">−2,2</span></div></td>
+              </tr>
+              <tr class="" title="Русский язык. Россия: 1 691 000 участников по предмету. 99 баллов: 84 купленных курсов.">
+                <th scope="row">Русский язык</th><td class="benchmark-country">25,9%</td><td class="benchmark-ours">23,0%</td>
+                <td><div class="benchmark-delta negative"><div class="benchmark-spark" aria-hidden="true"><span class="benchmark-zero"></span><span class="benchmark-change" style="left:35.509804827056364%;width:14.490195172943638%"></span></div><span class="benchmark-delta-value">−2,9</span></div></td>
+              </tr>
+              <tr class="benchmark-row-below" title="География. Россия: 774 000 участников по предмету. 99 баллов: 11 купленных курсов.">
+                <th scope="row">География</th><td class="benchmark-country">11,9%</td><td class="benchmark-ours">3,0%</td>
+                <td><div class="benchmark-delta negative"><div class="benchmark-spark" aria-hidden="true"><span class="benchmark-zero"></span><span class="benchmark-change" style="left:5.76723663827304%;width:44.23276336172696%"></span></div><span class="benchmark-delta-value">−8,8</span></div></td>
+              </tr>
+              <tr class="" title="Информатика. Россия: 691 000 участников по предмету. 99 баллов: 29 купленных курсов.">
+                <th scope="row">Информатика</th><td class="benchmark-country">10,6%</td><td class="benchmark-ours">7,9%</td>
+                <td><div class="benchmark-delta negative"><div class="benchmark-spark" aria-hidden="true"><span class="benchmark-zero"></span><span class="benchmark-change" style="left:36.78394955478403%;width:13.216050445215966%"></span></div><span class="benchmark-delta-value">−2,6</span></div></td>
+              </tr>
+              <tr class="" title="Обществознание. Россия: 663 000 участников по предмету. 99 баллов: 26 купленных курсов.">
+                <th scope="row">Обществознание</th><td class="benchmark-country">10,2%</td><td class="benchmark-ours">7,1%</td>
+                <td><div class="benchmark-delta negative"><div class="benchmark-spark" aria-hidden="true"><span class="benchmark-zero"></span><span class="benchmark-change" style="left:34.819625607160404%;width:15.1803743928396%"></span></div><span class="benchmark-delta-value">−3,0</span></div></td>
+              </tr>
+              <tr class="" title="Биология. Россия: 485 500 участников по предмету. 99 баллов: 37 купленных курсов.">
+                <th scope="row">Биология</th><td class="benchmark-country">7,4%</td><td class="benchmark-ours">10,1%</td>
+                <td><div class="benchmark-delta positive"><div class="benchmark-spark" aria-hidden="true"><span class="benchmark-zero"></span><span class="benchmark-change" style="left:50%;width:13.487567118249864%"></span></div><span class="benchmark-delta-value">+2,7</span></div></td>
+              </tr>
+              <tr class="benchmark-row-above" title="Физика. Россия: 168 500 участников по предмету. 99 баллов: 30 купленных курсов.">
+                <th scope="row">Физика</th><td class="benchmark-country">2,6%</td><td class="benchmark-ours">8,2%</td>
+                <td><div class="benchmark-delta positive"><div class="benchmark-spark" aria-hidden="true"><span class="benchmark-zero"></span><span class="benchmark-change" style="left:50%;width:28.185991544884736%"></span></div><span class="benchmark-delta-value">+5,6</span></div></td>
+              </tr>
+              <tr class="benchmark-row-above" title="Химия. Россия: 139 000 участников по предмету. 99 баллов: 38 купленных курсов.">
+                <th scope="row">Химия</th><td class="benchmark-country">2,1%</td><td class="benchmark-ours">10,4%</td>
+                <td><div class="benchmark-delta positive"><div class="benchmark-spark" aria-hidden="true"><span class="benchmark-zero"></span><span class="benchmark-change" style="left:50%;width:41.405085663667776%"></span></div><span class="benchmark-delta-value">+8,3</span></div></td>
+              </tr>
+              <tr class="" title="Английский язык. Россия: 134 000 участников по предмету. 99 баллов: 8 купленных курсов.">
+                <th scope="row">Английский язык</th><td class="benchmark-country">2,1%</td><td class="benchmark-ours">2,2%</td>
+                <td><div class="benchmark-delta positive"><div class="benchmark-spark" aria-hidden="true"><span class="benchmark-zero"></span><span class="benchmark-change" style="left:50%;width:0.6922783051146308%"></span></div><span class="benchmark-delta-value">+0,1</span></div></td>
+              </tr>
+              <tr class="" title="История. Россия: 52 000 участников по предмету. 99 баллов: 12 купленных курсов.">
+                <th scope="row">История</th><td class="benchmark-country">0,8%</td><td class="benchmark-ours">3,3%</td>
+                <td><div class="benchmark-delta positive"><div class="benchmark-spark" aria-hidden="true"><span class="benchmark-zero"></span><span class="benchmark-change" style="left:50%;width:12.45429241936364%"></span></div><span class="benchmark-delta-value">+2,5</span></div></td>
+              </tr>
+              <tr class="" title="Литература. Россия: 29 000 участников по предмету. 99 баллов: 3 купленных курсов.">
+                <th scope="row">Литература</th><td class="benchmark-country">0,4%</td><td class="benchmark-ours">0,8%</td>
+                <td><div class="benchmark-delta positive"><div class="benchmark-spark" aria-hidden="true"><span class="benchmark-zero"></span><span class="benchmark-change" style="left:50%;width:1.8877073371424733%"></span></div><span class="benchmark-delta-value">+0,4</span></div></td>
+              </tr></tbody>
+            </table>
+          </section>
+        </div>
+      </div>
+    </section>
+    <!-- RUSSIA COMPARISON END -->
+
+    <section class="slide white key-metrics" data-title="Главные показатели">
+      <div class="slide-inner">
+        <div class="split-title"><h2>Главные показатели</h2></div>
+        <p class="metrics-period">Сентябрь 25/26 и сентябрь 26/27</p>
+        <!-- Показатели и изменения сохранены из изображения, предоставленного пользователем. -->
+        <div class="metrics-grid">
+          <div class="metrics-group">
+            <h3 class="metrics-heading lilac" id="master-metrics-heading">Мастер-группа</h3>
+            <table class="metrics-table" aria-labelledby="master-metrics-heading">
+              <colgroup><col><col><col><col></colgroup>
+              <thead><tr><th scope="col">Показатель</th><th scope="col">25/26</th><th scope="col">26/27</th><th scope="col">Изменение</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Переходимость</th><td>76,4%</td><td>86,3%</td><td class="metric-up">+9,9 п.п.</td></tr>
+                <tr><th scope="row">Выполнение ДЗ</th><td>26,0%</td><td>26,9%</td><td class="metric-up">+0,9 п.п.</td></tr>
+                <tr><th scope="row">Просмотр уроков</th><td>35,9%</td><td>30,4%</td><td class="metric-down">−5,5 п.п.</td></tr>
+                <tr><th scope="row">LTV</th><td>43 007 ₽</td><td>46 695 ₽</td><td class="metric-up">+8,6%</td></tr>
+                <tr><th scope="row">Средний чек на ученика</th><td>6 441 ₽</td><td>7 206 ₽</td><td class="metric-up">+11,9%</td></tr>
+              </tbody>
+            </table>
+            <dl class="metrics-summary">
+              <div><dt>учеников</dt><dd>638</dd></div>
+              <div><dt>предмета на<br>ученика</dt><dd>2,69</dd></div>
+              <div><dt>курса куплено</dt><dd>1 723</dd></div>
+            </dl>
+          </div>
+          <div class="metrics-group">
+            <h3 class="metrics-heading pink" id="tutor-metrics-heading">Репетиторы</h3>
+            <table class="metrics-table" aria-labelledby="tutor-metrics-heading">
+              <colgroup><col><col><col><col></colgroup>
+              <thead><tr><th scope="col">Показатель</th><th scope="col">25/26</th><th scope="col">26/27</th><th scope="col">Изменение</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Отток</th><td>23,8%</td><td>6,2%</td><td class="metric-up">−17,7 п.п.</td></tr>
+                <tr><th scope="row">Переход: мини-группы</th><td>89,7%</td><td>93,8%</td><td class="metric-up">+4,0 п.п.</td></tr>
+                <tr><th scope="row">Переход: индивидуально</th><td>80,3%</td><td>84,5%</td><td class="metric-up">+4,3 п.п.</td></tr>
+                <tr><th scope="row">Уроков на ученика</th><td>3,64</td><td>5,77</td><td class="metric-up">+2,13</td></tr>
+                <tr><th scope="row">ФОТ от выручки</th><td>41,4%</td><td>37,2%</td><td class="metric-up">−4,2 п.п.</td></tr>
+                <tr><th scope="row">LTV</th><td>57 771 ₽</td><td>61 854 ₽</td><td class="metric-up">+7,1%</td></tr>
+                <tr><th scope="row">Средний чек</th><td>12 559 ₽</td><td>11 895 ₽</td><td class="metric-down">−5,3%</td></tr>
+                <tr><th scope="row">Посещаемость групп</th><td>91,2%</td><td>84,8%</td><td class="metric-down">−6,4 п.п.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STRATEGY ARCHITECTURE START -->
+    <section class="slide white strategy-architecture" data-title="Архитектура стратегии">
+      <div class="slide-inner">
+        <header class="architecture-header"><h2>Архитектура стратегии</h2></header>
+        <section class="architecture-growth" aria-labelledby="architecture-growth-title">
+          <h3 class="architecture-growth-heading" id="architecture-growth-title">Масштабирование новой выручки</h3>
+          <div class="architecture-stages">
+            <section class="architecture-stream" aria-labelledby="architecture-stream-1">
+              <div class="architecture-stage-header lilac">
+                <h4 id="architecture-stream-1">Инфраструктура для внедрения УТП</h4>
+                <svg class="architecture-transition" viewBox="0 0 32 24" aria-hidden="true"><path d="M2 12H30M22 4L30 12L22 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <ul><li class="architecture-project">Продуктовое обучение ОП и артефакты для продаж</li><li class="architecture-project">Разработка CJM</li><li class="architecture-project">Развитие социальных сетей преподавателей</li><li class="architecture-project">Статьи, разбор ФИПИ</li><li class="architecture-project">Проведение пробников</li></ul>
+            </section>
+            <section class="architecture-stream" aria-labelledby="architecture-stream-2">
+              <div class="architecture-stage-header sky">
+                <h4 id="architecture-stream-2">Создание виральных УТП и отстроек</h4>
+                <svg class="architecture-transition" viewBox="0 0 32 24" aria-hidden="true"><path d="M2 12H30M22 4L30 12L22 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <ul><li class="architecture-project">AI-LAB 99 баллов</li><li class="architecture-project">AI-тьютор</li><li class="architecture-project">Настолка ОГЭ</li></ul>
+            </section>
+            <section class="architecture-stream" aria-labelledby="architecture-stream-3">
+              <div class="architecture-stage-header pink">
+                <h4 id="architecture-stream-3">Создание вирального контента и масштабирование</h4>
+                <svg class="architecture-transition" viewBox="0 0 32 24" aria-hidden="true"><path d="M2 12H30M22 4L30 12L22 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <ul><li class="architecture-project">Найм звездных преподавателей</li><li class="architecture-project">Юридическое оформление сработавших AI-механик</li></ul>
+            </section>
+            <section class="architecture-stream" aria-labelledby="architecture-stream-4">
+              <div class="architecture-stage-header sage">
+                <h4 id="architecture-stream-4">Работа с коммьюнити и &quot;долгой&quot; выручкой</h4>
+
+              </div>
+              <ul><li class="architecture-project architecture-project-provisional">Лагерь на каникулах 6-11 классы</li><li class="architecture-project architecture-project-provisional">Открытые курсы для преподавателей</li></ul>
+            </section>
+          </div>
+        </section>
+        <div class="architecture-retention" role="group" aria-labelledby="architecture-retention-title">
+          <h3 class="architecture-retention-heading" id="architecture-retention-title">Повышение продлений. Адаптация контента к входу в любое время года</h3>
+          <div class="architecture-retention-items">
+            <div class="architecture-retention-item"><strong>Усиление контента:</strong><p>Новые уроки, переработка тем и домашние работы</p></div>
+            <div class="architecture-retention-item">Запуск 2,3 потока и Спидран</div>
+            <div class="architecture-retention-item">Итоговое сочинение</div>
+            <div class="architecture-retention-item">Итоговое собеседование</div>
+            <div class="architecture-retention-item">Летучка и Спринты</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- STRATEGY ARCHITECTURE END -->
+
+    <!-- SALES TRAINING START -->
+    <section class="slide white sales-training" data-title="Продуктовое обучение ОП и артефакты для продаж" aria-labelledby="sales-training-title">
+      <div class="slide-inner">
+        <header class="sales-training-header">
+          <h2 id="sales-training-title">Продуктовое обучение ОП и артефакты для продаж</h2>
+          <div class="sales-training-badge">Рост С2</div>
+        </header>
+        <div class="sales-training-layout">
+          <div class="sales-training-copy">
+            <p class="sales-training-current">Сейчас ОП не является носителем экспертизы ГИА: <span class="sales-training-nowrap">не персонализированные</span> презентации, плохое закрытие клиента.</p>
+            <div class="sales-training-goal"><p><strong>Цель:</strong> отстраиваться от рынка экспертизой ОП: проводить быструю и персонализированную консультацию под клиента с целью закрытия на <strong class="sales-training-target">3 и более предмета сразу.</strong></p></div>
+            <section class="sales-training-steps" aria-labelledby="sales-training-steps-title">
+              <h3 id="sales-training-steps-title">Шаги:</h3>
+              <ol>
+                <li><div><p>Запись обучения и проведение 1:1 аттестаций с менеджерами (уже провели 4 встречи, 2 видео-обучения)</p></div></li>
+                <li><div><p>Внедрение регулярных обучений ОП (1 раз в две недели)</p></div></li>
+                <li><div><p>Разработка артефактов для отработки возражений клиента и персонализации:</p><ul class="sales-training-artifacts"><li>видео о платформе</li><li>видео о процессе обучения</li><li>pdf сравнение 99 баллов с репетиторами</li><li>генерация персонализированной презентации</li></ul></div></li>
+              </ol>
+            </section>
+          </div>
+          <div class="sales-training-media">
+            <figure class="sales-training-media-frame"><video data-slide-video muted loop playsinline preload="none" poster="assets/media/sales-training-01-poster.jpg" width="1906" height="936" aria-label="Продуктовое обучение ОП в базе знаний 99 баллов" style="display:block;width:100%;height:100%;object-fit:contain"><source src="assets/media/sales-training-01.mp4" type="video/mp4"></video></figure>
+            <div class="sales-training-media-frame sales-training-media-pending" aria-label="Место для второй GIF"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- SALES TRAINING END -->
+
+    <!-- CJM DEVELOPMENT START -->
+    <section class="slide white cjm-growth" data-title="Разработка CJM" aria-labelledby="cjm-growth-title">
+      <div class="slide-inner">
+        <header class="cjm-growth-header">
+          <h2 id="cjm-growth-title">Разработка CJM</h2>
+          <div class="cjm-growth-badge">Рост %контакт установлен и С2</div>
+        </header>
+        <div class="cjm-growth-context">
+          <p class="cjm-growth-current">Сейчас CJM отсутствует</p>
+          <div class="cjm-growth-goal"><p>Цель: доносить ценность курса <strong>до касания ОП</strong></p></div>
+        </div>
+        <section class="cjm-growth-steps" aria-labelledby="cjm-growth-steps-title">
+          <h3 id="cjm-growth-steps-title">Шаги:</h3>
+          <ol>
+            <li><p>Внедрение <strong>смс сопровождения</strong> после оставления заявки с ключевыми данными и ссылками</p></li>
+            <li><p>Внедрение <strong>страницы спасибо</strong> на лендингах с предложением получения полезных артефактов в тг (запуск бота)</p></li>
+            <li><p><strong>Цепочка бота</strong> с доп ценностью для клиента (видео о платформе, обучении, pdf для школьников/родителей)</p></li>
+          </ol>
+        </section>
+      </div>
+    </section>
+    <!-- CJM DEVELOPMENT END -->
+
+    <!-- TEACHER SOCIAL DEVELOPMENT START -->
+    <section class="slide white teacher-social" data-title="Развитие социальных сетей преподавателей" aria-labelledby="teacher-social-title">
+      <div class="slide-inner">
+        <header class="teacher-social-header"><h2 id="teacher-social-title">Развитие социальных сетей преподавателей</h2></header>
+        <div class="teacher-social-context">
+          <p class="teacher-social-platforms">Площадки: <strong>Telegram и ВК</strong> , TikTok и Instagram</p>
+          <div class="teacher-social-goal"><p>Цель: Запуск <strong>системного создания контента</strong><br>и подготовка SMM площадок для дальнейшего развития</p></div>
+        </div>
+        <section class="teacher-social-steps" aria-labelledby="teacher-social-steps-title">
+          <h3 id="teacher-social-steps-title">Шаги:</h3>
+          <ol>
+            <li><p><strong>SMM план.</strong> Запуск генерации контента 4 преподавателями с октября.</p></li>
+            <li><p><strong>30 рилсов</strong> на преподавателя в месяц</p></li>
+            <li><p><strong>Автоматизация создания части контента:</strong> нарезка и монтаж контента с вебинаров.</p></li>
+          </ol>
+        </section>
+      </div>
+    </section>
+    <!-- TEACHER SOCIAL DEVELOPMENT END -->
+
+    <!-- FIPI TRIALS GROWTH START -->
+    <section class="slide white fipi-growth" data-title="Статьи, разбор ФИПИ. Проведение пробников." aria-labelledby="fipi-growth-title">
+      <div class="slide-inner">
+        <header class="fipi-growth-header"><h2 id="fipi-growth-title">Статьи, разбор ФИПИ. Проведение пробников.</h2></header>
+        <div class="fipi-growth-goal"><p>Цель: создание <strong>новых точек входа в воронку</strong>, органический трафик с посадкой в медиа-школы и последующий прогрев в оплату</p></div>
+        <div class="fipi-growth-metric">
+          <div class="fipi-growth-value">50 000</div>
+          <p class="fipi-growth-caption">учеников пройдут пробники<br>за год — план</p>
+        </div>
+        <div class="fipi-growth-channels">
+          <section class="fipi-growth-channel" aria-label="ФИПИ и статьи">
+            <p class="fipi-growth-lead"><strong>Разбираем задачи из открытого банка ФИПИ и пишем статьи</strong> — получаем поисковый трафик.</p>
+            <ul><li>Разборы заданий открытого банка ФИПИ</li><li>Статьи на сайте</li><li>Каждый месяц увеличиваем объём</li></ul>
+          </section>
+          <section class="fipi-growth-channel" aria-label="Бесплатные пробники">
+            <p class="fipi-growth-lead"><strong>Бесплатный пробник — повод прийти к нам.</strong> Ребёнок пишет пробник, мы получаем его контакт.</p>
+            <ul><li>После пробника — автоматический разбор результата и предложение курса</li><li>Через школы: учителя приглашают на пробник всех своих учеников</li></ul>
+          </section>
+        </div>
+      </div>
+    </section>
+    <!-- FIPI TRIALS GROWTH END -->
+
+    <!-- AI LAB GROWTH START -->
+    <section class="slide white ai-lab-growth ai-lab-growth-step-1" data-title="AI-LAB 99 баллов — Шаг 1" aria-labelledby="ai-lab-title-1 ai-lab-step-label-1">
+      <div class="slide-inner">
+        <header class="ai-lab-header"><h2 id="ai-lab-title-1"><span>AI-LAB</span> 99 баллов</h2></header>
+        <div class="ai-lab-lead"><p>Создание новой ценности через <strong>AI переупаковку</strong> образовательного контента.</p></div>
+        <div class="ai-lab-primary-layout">
+          <div class="ai-lab-primary-panel">
+            <h3 class="ai-lab-body-step-label" id="ai-lab-step-label-1">Шаг 1:</h3>
+            <ul class="ai-lab-bullet-list"><li>Построение визуальных <strong>3d/2d моделей</strong> по физике, биологии, химии с демонстрацией процессов и задач для внедрения в вебинары и домашние работы</li><li><strong>тренажеры</strong> для удобной отработки навыков и заучивания карточек (русский язык, обществознание)</li><li><strong>студия кодинга</strong> и визуального программирования, решения алгоритмических задач</li></ul>
+          </div>
+          <div class="ai-lab-demo-stack">
+            <div class="ai-lab-demo-slot"><figure class="ai-lab-demo" style="width:431.65px;height:212.00px">
+                <video data-slide-video muted loop playsinline preload="none" poster="assets/media/ai-lab-historical-geoguessr-poster.jpg" width="1918" height="942" aria-labelledby="ai-lab-caption-historical-geoguessr"><source src="assets/media/ai-lab-historical-geoguessr.mp4" type="video/mp4"></video>
+                <figcaption id="ai-lab-caption-historical-geoguessr">исторический гео гессер</figcaption>
+              </figure></div>
+            <div class="ai-lab-demo-slot"><figure class="ai-lab-demo" style="width:322.55px;height:212.00px">
+                <video data-slide-video muted loop playsinline preload="none" poster="assets/media/ai-lab-chemical-model-poster.jpg" width="1348" height="886" aria-labelledby="ai-lab-caption-chemical-model"><source src="assets/media/ai-lab-chemical-model.mp4" type="video/mp4"></video>
+                <figcaption id="ai-lab-caption-chemical-model">химическая модель</figcaption>
+              </figure></div>
+            <div class="ai-lab-demo-slot"><figure class="ai-lab-demo" style="width:311.63px;height:212.00px">
+                <video data-slide-video muted loop playsinline preload="none" poster="assets/media/ai-lab-russian-trainer-poster.jpg" width="1076" height="732" aria-labelledby="ai-lab-caption-russian-trainer"><source src="assets/media/ai-lab-russian-trainer.mp4" type="video/mp4"></video>
+                <figcaption id="ai-lab-caption-russian-trainer">тренажер по русскому</figcaption>
+              </figure></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="slide white ai-lab-growth ai-lab-growth-step-2" data-title="AI-LAB 99 баллов — Шаг 2" aria-labelledby="ai-lab-title-2 ai-lab-step-label-2">
+      <div class="slide-inner">
+        <header class="ai-lab-header"><h2 id="ai-lab-title-2"><span>AI-LAB</span> 99 баллов</h2></header>
+        <div class="ai-lab-lead"><p>Создание новой ценности через <strong>AI переупаковку</strong> образовательного контента.</p></div>
+        <div class="ai-lab-followup-layout">
+          <div class="ai-lab-bullet-copy">
+            <h3 class="ai-lab-body-step-label" id="ai-lab-step-label-2">Шаг 2:</h3>
+            <ul class="ai-lab-bullet-list"><li>Внедрение <strong>AI-контента уроков и платформы</strong> в SMM и CJM клиента</li><li>Генерация <strong>первого demo мобильного приложения</strong> (только вайб-кодинг)</li><li><strong>Юридическое оформление</strong> успешных наработок</li></ul>
+          </div>
+          <figure class="ai-lab-followup-photo"><img src="assets/media/ai-lab-step-2-neofamily.png" width="1231" height="842" alt="Страница приложения «Лаборатория NeoFamily» в RuStore" loading="lazy" decoding="async"></figure>
+        </div>
+      </div>
+    </section>
+    <section class="slide white ai-lab-growth ai-lab-growth-step-3 ai-lab-growth-has-image" data-title="AI-LAB 99 баллов — Шаг 3" aria-labelledby="ai-lab-title-3 ai-lab-step-label-3">
+      <div class="slide-inner">
+        <header class="ai-lab-header"><h2 id="ai-lab-title-3"><span>AI-LAB</span> 99 баллов</h2></header>
+        <div class="ai-lab-lead"><p>Создание новой ценности через <strong>AI переупаковку</strong> образовательного контента.</p></div>
+        <div class="ai-lab-followup-layout">
+          <div class="ai-lab-bullet-copy">
+            <h3 class="ai-lab-body-step-label" id="ai-lab-step-label-3">Шаг 3:</h3>
+            <ul class="ai-lab-bullet-list"><li>Создание глубоко интегрированного AI-контента - <strong>геймификация всего учебного процесса</strong> (профильная математика)</li></ul>
+          </div>
+          <figure class="ai-lab-civilization-figure" aria-labelledby="ai-lab-civilization-caption"><div class="ai-lab-civilization-frame"><img src="assets/media/ai-lab-equations-civilization-tree-v1.png" width="1672" height="941" alt="Игровая ветка изучения уравнений: 22 карточки навыков развивают цивилизацию от поселения до города-академии" loading="lazy" decoding="async"></div><figcaption id="ai-lab-civilization-caption">Ветка развития цивилизации. Не демо</figcaption></figure>
+        </div>
+      </div>
+    </section>
+    <!-- AI LAB GROWTH END -->
+
+    <!-- AI TUTOR GROWTH START -->
+    <section class="slide white ai-tutor-growth" data-title="AI-тьютор" aria-labelledby="ai-tutor-title">
+      <div class="slide-inner">
+        <header class="ai-tutor-header"><h2 id="ai-tutor-title"><span>AI</span>-тьютор</h2></header>
+        <div class="ai-tutor-goal"><p>Цель: <strong>кратное усиление ценности</strong> производимого контента в рамках вебинаров, тренажеров, AI-лаборатории. Помогаем ученику быстрее учить, отрабатывать и вспоминать материал.</p></div>
+        <div class="ai-tutor-layout">
+          <section class="ai-tutor-scenarios" aria-labelledby="ai-tutor-scenarios-title">
+            <h3 id="ai-tutor-scenarios-title">Ключевые пользовательские сценарии:</h3>
+            <ol>
+              <li><p><strong>Ученик задает вопрос по курсу</strong> =&gt; получает качественный ответ с ссылками на тайм-коды из вебинаров и ссылки на нужные тренажеры</p></li>
+              <li><p><strong>Ученик сдает домашнюю работу</strong> =&gt; куратор проверяет с использованием ИИ =&gt; перед отправкой ОС обогощается ссылками на разбор каждого инструмента/термина/блока, в котором была допущена ошибка</p></li>
+              <li><p><strong>Ученик решает задачу</strong>, бот в формате метода Сократа - помогает через вопросы прийти к решению и пониманию задачи</p></li>
+            </ol>
+          </section>
+          <div class="ai-tutor-media" role="img" aria-label="Место для одной GIF AI-тьютора"></div>
+        </div>
+        <aside class="ai-tutor-funnel" aria-label="План тестирования входа в воронку"><p><strong>Будем тестировать вход в воронку через AI-тьютора</strong>: первое касание сразу даёт ученику ценность и доступ к образовательному контенту.</p></aside>
+      </div>
+    </section>
+    <!-- AI TUTOR GROWTH END -->
+
+    <!-- OGE BOARD GAME START -->
+    <section class="slide white oge-board-game" data-title="Настолка ОГЭ" aria-labelledby="oge-board-game-title">
+      <div class="slide-inner">
+        <header class="oge-board-game-header"><h2 id="oge-board-game-title">Настолка ОГЭ</h2></header>
+        <aside class="oge-board-game-status"><p>Пересобираем слайд, будет доступен к встрече по стратегии</p></aside>
+      </div>
+    </section>
+    <!-- OGE BOARD GAME END -->
+
+    <!-- STAR TEACHER RECRUITING START -->
+    <section class="slide white star-teacher-recruiting" data-title="Найм звездных преподавателей" aria-labelledby="star-teacher-title">
+      <div class="slide-inner">
+        <header class="star-teacher-header"><h2 id="star-teacher-title">Найм звездных преподавателей</h2></header>
+        <div class="star-teacher-layout">
+          <div class="star-teacher-copy">
+            <div class="star-teacher-lead"><p>Один из ключевых драйверов ускоренного масштабирования<br>- <strong>покупка преподавателя с аудиторией</strong>, опытом работы на камеру.</p></div>
+            <p class="star-teacher-example">По данному сценарию масштабировался <strong>100бальный репетитор</strong>.</p>
+            <section class="star-teacher-steps" aria-labelledby="star-teacher-steps-title">
+              <h3 id="star-teacher-steps-title">Шаги:</h3>
+              <ol>
+                <li><p>Составление списка потенциальных преподавателей</p></li>
+                <li><p>Подготовка юнит-экономики и фиксация мотивации преподавателя в зависимости от медийности</p></li>
+                <li><p>Старт переговоров <strong>в январе</strong></p></li>
+                <li><p>Запуск работы <strong>в феврале-марте</strong></p></li>
+              </ol>
+            </section>
+          </div>
+          <figure class="star-teacher-media"><video data-slide-video muted loop playsinline preload="none" poster="assets/media/star-teacher-recruiting-poster.jpg" width="720" height="1280" aria-label="Видео к слайду «Найм звездных преподавателей»"><source src="assets/media/star-teacher-recruiting.mp4" type="video/mp4"></video></figure>
+        </div>
+      </div>
+    </section>
+    <!-- STAR TEACHER RECRUITING END -->
+
+    <!-- COMMUNITY LONG REVENUE START -->
+    <section class="slide white community-revenue" data-title="Работа с комьюнити и «долгой» выручкой" aria-labelledby="community-revenue-title">
+      <div class="slide-inner">
+        <header class="community-revenue-header"><h2 id="community-revenue-title">Работа с комьюнити и «долгой» выручкой</h2></header>
+        <div class="community-opportunities">
+          <section class="community-opportunity community-opportunity-provisional" aria-labelledby="community-opportunity-1">
+            <header class="community-opportunity-header"><h3 id="community-opportunity-1">Лагерь на каникулах, 6–11 классы</h3></header>
+            <ul><li>Открытый формат для роста социальных сетей и сбора контактов детей и родителей.</li><li>Последующий прогрев аудитории в контентной воронке.</li></ul>
+          </section>
+          <section class="community-opportunity community-opportunity-provisional" aria-labelledby="community-opportunity-2">
+            <header class="community-opportunity-header"><h3 id="community-opportunity-2">Открытые курсы для преподавателей</h3></header>
+            <ul><li>Полезный контент для преподавателей и бесплатные пробники для их учеников.</li><li>Привлечение учеников через реферальную программу и промокоды.</li></ul>
+          </section>
+        </div>
+        <svg class="community-merge" viewBox="0 0 1728 38" aria-hidden="true"><path d="M420 2V14H1308V2M864 14V34M856 26L864 34L872 26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <section class="community-landing" aria-labelledby="community-landing-title">
+          <h3 id="community-landing-title">Посадочная для комьюнити</h3>
+          <p class="community-landing-description">Создать отдельную страницу или Telegram-канал для детей и родителей.</p>
+          <p class="community-landing-hypothesis"><strong>Вариант позиционирования:</strong> школьное образование и обучение детей в эпоху AI.</p>
+        </section>
+        <section class="community-journey" aria-label="Путь аудитории от бесплатного контента к подготовке к экзаменам">
+          <ol>
+            <li class="community-stage"><span class="community-stage-number" aria-hidden="true">1</span><h4>Бесплатный контент</h4><p>Лагерь, материалы и пробники</p><svg class="community-arrow" viewBox="0 0 40 32" aria-hidden="true"><path d="M3 16H36M25 5L36 16L25 27" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></li>
+            <li class="community-stage"><span class="community-stage-number" aria-hidden="true">2</span><h4>Комьюнити</h4><p>Контакты и прогрев в своих каналах</p><svg class="community-arrow" viewBox="0 0 40 32" aria-hidden="true"><path d="M3 16H36M25 5L36 16L25 27" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></li>
+            <li class="community-stage"><span class="community-stage-number" aria-hidden="true">3</span><h4>Курсы 6–8 классов</h4><p>Помощь по всем школьным предметам</p><svg class="community-arrow" viewBox="0 0 40 32" aria-hidden="true"><path d="M3 16H36M25 5L36 16L25 27" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></li>
+            <li class="community-stage"><span class="community-stage-number" aria-hidden="true">4</span><h4>ОГЭ и ЕГЭ</h4><p>Подготовка в нашей школе</p></li>
+          </ol>
+        </section>
+      </div>
+    </section>
+    <!-- COMMUNITY LONG REVENUE END -->
+
+
+
+    <!-- RETENTION STREAMS CALENDAR START -->
+    <section class="slide white retention-streams" data-title="Календарь работы с продлениями и потоками" aria-labelledby="retention-title">
+      <div class="slide-inner">
+        <header class="retention-header"><h2 id="retention-title">Календарь работы с продлениями и потоками</h2></header>
+        <div class="retention-calendar" aria-label="Календарь с сентября по май">
+          <div class="retention-months"><span class="retention-month">Сентябрь</span><span class="retention-month">Октябрь</span><span class="retention-month">Ноябрь</span><span class="retention-month">Декабрь</span><span class="retention-month">Январь</span><span class="retention-month">Февраль</span><span class="retention-month">Март</span><span class="retention-month">Апрель</span><span class="retention-month">Май</span></div>
+          <section class="retention-group retention-group-tutors" aria-labelledby="retention-group-tutors">
+            <h3 class="retention-group-title" id="retention-group-tutors">Репетиторы</h3>
+            <div class="retention-rows">
+              <div class="retention-row"><div class="retention-row-label">Годовые</div><div class="retention-track"><span class="retention-bar retention-bar-sky" style="grid-column:1/9" aria-label="Годовые: Мини-группа / Индивидуально; Сентябрь–Апрель">Мини-группа / Индивидуально</span></div></div>
+              <div class="retention-row"><div class="retention-row-label">Спринты</div><div class="retention-track"><span class="retention-bar retention-bar-blue" style="grid-column:9/10" aria-label="Спринты: Спринт; Май–Май">Спринт</span></div></div>
+            </div>
+          </section>
+          <section class="retention-group retention-group-master" aria-labelledby="retention-group-master">
+            <h3 class="retention-group-title" id="retention-group-master">Мастер-группа</h3>
+            <div class="retention-rows">
+              <div class="retention-row"><div class="retention-row-label">1 поток</div><div class="retention-track"><span class="retention-bar retention-bar-lilac" style="grid-column:1/9" aria-label="1 поток: Синхронная программа; Сентябрь–Апрель">Синхронная программа</span></div></div>
+              <div class="retention-row"><div class="retention-row-label">2 поток</div><div class="retention-track"><span class="retention-bar retention-bar-pink" style="grid-column:3/9" aria-label="2 поток: Записи + подключение к онлайну; Ноябрь–Апрель">Записи + подключение к онлайну</span></div></div>
+              <div class="retention-row"><div class="retention-row-label">3 поток</div><div class="retention-track"><span class="retention-bar retention-bar-sage" style="grid-column:4/9" aria-label="3 поток: Записи с догоном к концу года; Декабрь–Апрель">Записи с догоном к концу года</span></div></div>
+              <div class="retention-row"><div class="retention-row-label">Спидран</div><div class="retention-track"><span class="retention-bar retention-bar-dark" style="grid-column:7/10" aria-label="Спидран: Март–май · быстрая подготовка к ЕГЭ; Март–Май">Март–май · быстрая подготовка к ЕГЭ</span></div></div>
+              <div class="retention-row"><div class="retention-row-label">Летучка</div><div class="retention-track"><span class="retention-bar retention-bar-blue" style="grid-column:9/10" aria-label="Летучка: Летучка; Май–Май">Летучка</span></div></div>
+              <div class="retention-row"><div class="retention-row-label">Дополнительные продукты</div><div class="retention-track"><span class="retention-bar retention-bar-lemon" style="grid-column:3/5" aria-label="Дополнительные продукты: Сочинение; Ноябрь–Декабрь">Сочинение</span><span class="retention-bar retention-bar-coral" style="grid-column:5/7" aria-label="Дополнительные продукты: Собеседование; Январь–Февраль">Собеседование</span></div></div>
+            </div>
+          </section>
+        </div>
+        <div class="retention-notes">
+          <article class="retention-note"><h3>Дополнительные точки входа</h3><p>Позволяют закрывать потребность учеников, начинающих в середине и конце учебного года, и повышают доходимость.</p></article>
+          <article class="retention-note"><h3>Спидран и Летучка</h3><p>Дают дополнительную выручку в конце года. Летучка завершает продуктовую траекторию.</p></article>
+          <article class="retention-note"><h3>Спецкурсы для продлений</h3><p>Подготовка к итоговому сочинению и собеседованию повышает переходимость между месяцами.</p></article>
+        </div>
+      </div>
+    </section>
+    <!-- RETENTION STREAMS CALENDAR END -->
+
+
+
+
+
+
+
+
+  </main>
+  <script>
+    const deck=document.getElementById('deck');
+    const slides=[...deck.children].filter(element=>element.classList.contains('slide'));
+    const importedFrames=[...deck.querySelectorAll('.imported-slide iframe')];
+    let index=0;
+    function fit(){deck.style.setProperty('--fit-scale',Math.min(window.innerWidth/1920,window.innerHeight/1080))}
+    window.addEventListener('resize',fit);fit();
+    function notifyFrame(frame){frame.contentWindow?.postMessage({type:'strategy-deck:state',active:frame.closest('.slide')===slides[index]&&!document.hidden},'*')}
+    function syncImportedSlides(){importedFrames.forEach(notifyFrame)}
+    // NATIVE SLIDE VIDEO START
+    const nativeVideos=[...deck.querySelectorAll('video[data-slide-video]')];
+    function syncNativeVideos(){
+      nativeVideos.forEach(video=>{
+        const active=video.closest('.slide')===slides[index]&&!document.hidden;
+        if(active){
+          video.muted=true;
+          if(video.paused)video.play().catch(()=>{});
+        }else{
+          video.pause();
+          if(video.currentTime)video.currentTime=0;
+        }
+      });
+    }
+    document.addEventListener('visibilitychange',syncNativeVideos);
+    // NATIVE SLIDE VIDEO END
+    function go(i){
+      index=Math.max(0,Math.min(slides.length-1,i));
+      slides.forEach((slide,n)=>slide.classList.toggle('active',n===index));
+      syncImportedSlides();
+      syncNativeVideos();
+      deck.focus({preventScroll:true});
+    }
+    function navigate(key){
+      if(['ArrowRight','PageDown',' '].includes(key)){go(index+1);return true}
+      if(['ArrowLeft','PageUp'].includes(key)){go(index-1);return true}
+      if(key==='Home'){go(0);return true}
+      if(key==='End'){go(slides.length-1);return true}
+      return false;
+    }
+    importedFrames.forEach(frame=>frame.addEventListener('load',()=>notifyFrame(frame)));
+    window.addEventListener('message',event=>{
+      const frame=importedFrames.find(item=>item.contentWindow===event.source);
+      if(!frame)return;
+      if(event.data?.type==='strategy-deck:ready'){notifyFrame(frame);return}
+      if(event.data?.type==='strategy-deck:navigate'&&frame.closest('.slide')===slides[index])navigate(event.data.key);
+    });
+    document.addEventListener('visibilitychange',syncImportedSlides);
+    document.addEventListener('keydown',event=>{
+      if(event.altKey||event.ctrlKey||event.metaKey)return;
+      if(navigate(event.key))event.preventDefault();
+    });
+    go(0);
+  </script>
+</body>
+</html>
